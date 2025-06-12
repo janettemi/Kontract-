@@ -208,7 +208,7 @@ const JobCard: React.FC<JobCardProps> = ({
 
       {/* Contact Contractor Button */}
       {showContactButton && onButtonClick && (
-        <Box sx={{ mt: 3 }}>
+        <Box sx={{ mt: 2 }}>
           <CustomButton
            rounded
             variant="outlined"

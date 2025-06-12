@@ -3,10 +3,9 @@
 import SearchInput from "@/conponent/SearchInput";
 import SelectInput from "@/conponent/SelectInput";
 import JobCard from "@/conponent/JobCard";
-import { Box} from "@mui/material";
-import { useState } from "react";
-import Grid from "@mui/material/Grid";
 import BuildSection from "@/conponent/BuildInfo";
+import { Box } from "@mui/material";
+import { useState } from "react";
 
 const jobs = [
   {
@@ -55,34 +54,49 @@ const jobs = [
     showContactButton: false,
   },
   {
-    id: 3,
-    postedTime: "3 days ago",
-    title: "Paint a 3-bedroom flat",
-    jobTitle: "Painter",
+    id: 4,
+    postedTime: "4 days ago",
+    title: "Fix Air Conditioning Unit",
+    jobTitle: "HVAC Technician",
     description:
-      "Looking for a painter to paint a 3-bedroom flat in Surulere. Materials will be provided.",
-    priceRange: "$150 - $250",
-    rating: 3,
-    location: "Surulere",
-    dueDate: "June 20, 2025",
-    bids: 3,
+      "AC is not cooling properly. Need diagnosis and repair before weekend.",
+    priceRange: "$100 - $200",
+    rating: 4,
+    location: "Port Harcourt",
+    dueDate: "June 18, 2025",
+    bids: 2,
+    showPromotedButton: false,
+    showContactButton: true,
+  },
+  {
+    id: 5,
+    postedTime: "5 days ago",
+    title: "Wall Mount TV Installation",
+    jobTitle: "Technician",
+    description:
+      "Need to mount a 55-inch TV on a concrete wall. Bring your tools.",
+    priceRange: "$30 - $70",
+    rating: 5,
+    location: "Kano",
+    dueDate: "June 19, 2025",
+    bids: 4,
     showPromotedButton: true,
     showContactButton: false,
   },
   {
-    id: 3,
-    postedTime: "3 days ago",
-    title: "Paint a 3-bedroom flat",
-    jobTitle: "Painter",
+    id: 4,
+    postedTime: "4 days ago",
+    title: "Fix Air Conditioning Unit",
+    jobTitle: "HVAC Technician",
     description:
-      "Looking for a painter to paint a 3-bedroom flat in Surulere. Materials will be provided.",
-    priceRange: "$150 - $250",
-    rating: 3,
-    location: "Surulere",
-    dueDate: "June 20, 2025",
-    bids: 3,
-    
-    showContactButton: false,
+      "AC is not cooling properly. Need diagnosis and repair before weekend.",
+    priceRange: "$100 - $200",
+    rating: 4,
+    location: "Port Harcourt",
+    dueDate: "June 18, 2025",
+    bids: 2,
+    showPromotedButton: false,
+    showContactButton: true,
   },
 ];
 
@@ -105,58 +119,82 @@ const BrowseJobs = () => {
 
   return (
     <>
-    <Box sx={{ display: "flex", flexDirection: "column", gap: 4, p: 4 }}>
       <Box
         sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          flexWrap: "wrap",
-          gap: 2,
+          px: 4,
+          py: 6,
+          maxWidth: "1200px",
+          margin: "0 auto",
         }}
       >
-        <SearchInput
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          placeholder="Search contractors, jobs..."
-        />
-        <Box sx={{ display: "flex", gap: 2 }}>
-          <SelectInput
-            label="Categories"
-            value={role}
-            options={roles}
-            onChange={setRole}
+        {/* Filters */}
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            flexWrap: "wrap",
+            gap: 2,
+            mb: 4,
+          }}
+        >
+          <SearchInput
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search contractors, jobs..."
           />
-          <SelectInput
-            label="Location"
-            value={department}
-            options={departments}
-            onChange={setDepartment}
-          />
+          <Box sx={{ display: "flex", gap: 2 }}>
+            <SelectInput
+              label="Categories"
+              value={role}
+              options={roles}
+              onChange={setRole}
+            />
+            <SelectInput
+              label="Location"
+              value={department}
+              options={departments}
+              onChange={setDepartment}
+            />
+          </Box>
         </Box>
+
+     <Box
+  sx={{
+    columnCount: 3,
+    columnGap: 5, // spacing between columns
+    maxWidth: "1200px",
+    mx: "auto",
+  }}
+>
+  {jobs.map((job) => (
+    <Box
+      key={job.id}
+      sx={{
+        breakInside: "avoid",
+        mb: 3,
+      }}
+    >
+      <JobCard
+        postedTime={job.postedTime}
+        title={job.title}
+        jobTitle={job.jobTitle}
+        description={job.description}
+        priceRange={job.priceRange}
+        rating={job.rating}
+        location={job.location}
+        dueDate={job.dueDate}
+        bids={job.bids}
+        showPromotedButton={job.showPromotedButton}
+        showContactButton={job.showContactButton}
+        onButtonClick={() => alert(`Contacting for job: ${job.title}`)}
+      />
+    </Box>
+  ))}
+</Box>
+
       </Box>
 
-      <Grid container spacing={3}>
-        {jobs.map((job) => (
-           <Grid key={job.id} item xs={12} sm={6} md={4}>
-            <JobCard
-              postedTime={job.postedTime}
-              title={job.title}
-              jobTitle={job.jobTitle}
-              description={job.description}
-              priceRange={job.priceRange}
-              rating={job.rating}
-              location={job.location}
-              dueDate={job.dueDate}
-              bids={job.bids}
-              showPromotedButton={job.showPromotedButton}
-              showContactButton={job.showContactButton}
-              onButtonClick={() => alert(`Contacting for job: ${job.title}`)}
-            />
-          </Grid>
-        ))}
-      </Grid>
-    </Box>
-    <Box>
+      <Box sx={{ mt: 6 }}>
         <BuildSection />
       </Box>
     </>

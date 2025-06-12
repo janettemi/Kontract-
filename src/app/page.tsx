@@ -67,6 +67,8 @@ useEffect(() => {
     location: "Lagos, Nigeria",
     dueDate: "June 15, 2025",
     bids: 12,
+    showPromotedButton: true,
+    showContactButton: true,
   },
   {
     postedTime: "Posted 1 hour ago",
@@ -78,6 +80,8 @@ useEffect(() => {
     location: "Abuja, Nigeria",
     dueDate: "June 20, 2025",
     bids: 8,
+    showPromotedButton: true,
+    showContactButton: true,
   },
   {
     postedTime: "Posted yesterday",
@@ -89,6 +93,7 @@ useEffect(() => {
     location: "PH, Nigeria",
     dueDate: "June 25, 2025",
     bids: 15,
+    
   },
 ];
 
