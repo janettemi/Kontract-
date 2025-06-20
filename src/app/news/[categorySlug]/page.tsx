@@ -2,13 +2,16 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { CATEGORY_DATA } from '@/constants/newsData';
 import { Box, Typography, Button } from '@mui/material';
-import { ArticleCard } from '../page';
+import { ArticleCard } from '../page'; // make sure this is a client-safe component
 
-type Props = {
-  params: { categorySlug: string };
-};
+// ✅ The expected shape by Next.js
+interface CategoryPageProps {
+  params: {
+    categorySlug: string;
+  };
+}
 
-const CategoryPage = ({ params }: Props) => {
+export default function CategoryPage({ params }: CategoryPageProps) {
   const { categorySlug } = params;
   const category = CATEGORY_DATA[categorySlug];
 
@@ -17,10 +20,14 @@ const CategoryPage = ({ params }: Props) => {
   return (
     <Box sx={{ px: 2, py: 6, maxWidth: 1200, mx: 'auto' }}>
       {/* Featured Post */}
-      <Button variant="outlined" sx={{ mt: 2 }}>{category.featured.category}</Button>
+      <Button variant="outlined" sx={{ mt: 2 }}>
+        {category.featured.category}
+      </Button>
+
       <Typography fontWeight={700} fontSize={32} mb={3}>
         {category.featured.title}
       </Typography>
+
       <Image
         src={category.featured.img}
         alt={category.featured.title}
@@ -34,6 +41,7 @@ const CategoryPage = ({ params }: Props) => {
         <Typography fontWeight={600} fontSize={24} mb={2}>
           Related Posts
         </Typography>
+
         <Box display="flex" flexDirection="column" gap={4}>
           {category.related.map((item, idx) => (
             <ArticleCard key={idx} {...item} />
@@ -42,6 +50,4 @@ const CategoryPage = ({ params }: Props) => {
       </Box>
     </Box>
   );
-};
-
-export default CategoryPage;
+}
