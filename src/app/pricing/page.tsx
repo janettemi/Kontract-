@@ -5,6 +5,7 @@ import { Box, Typography, Button } from "@mui/material";
 import BackgroundGrid from "@/conponent/BackgroundGrid";
 import PricingCard from "@/conponent/PricingCard";
 import BuildSection from "@/conponent/BuildInfo";
+import FAQSection from "@/conponent/Faq";
 
 const pricingPlans = {
   bids: [
@@ -63,42 +64,55 @@ const pricingPlans = {
   ],
   promotion: [
     {
-      title: "Basic Promotion",
-      description: "Promote your listing to get noticed by clients.",
-      dailyAmount: "₦1,999/week",
-      buttonText: "Promote Now",
+      title: "Free",
+      description: "Basic job listing with limited reach—perfect for getting started.",
+      dailyAmount: "₦0/year",
+      buttonText: "Sign up free",
       listTitle: "What’s included:",
       features: [
-        "Priority listing in searches",
-        "Highlight your job posting",
-        "Attract more qualified contractors",
-        "One-time promotion with no subscription",
+        "Unlimited posting of contracts and services",
+        "Standard contractor applicant messaging.",
+        "Access to public contractor profiles.",
+        "Basic reporting on contract views and applications.",
       ],
     },
     {
-      title: "Boosted Plan",
-      description: "Double your visibility with ongoing promotions.",
-      dailyAmount: "₦6,999/month",
-      buttonText: "Boost Visibility",
-      listTitle: "All basic promotion features plus:",
+      title: "Daily",
+      description: "Boost your job every day for top visibility and fast matches.",
+      dailyAmount: "₦999/daily",
+      buttonText: "Boost Daily",
+      listTitle: "All free features plus:",
       features: [
-        "Pinned listing on dashboard",
-        "Analytics on views & clicks",
-        "Custom call-to-action",
-        "Renew automatically every month",
+        "Unlimited contract postings with premium visibility for a week.",
+        "Basic search visibility for contractors",
+        "24-hour response guarantee for applicant messages",
+        "Simple contract template access (5 templates)",
       ],
     },
     {
-      title: "Elite Exposure",
-      description: "Get maximum reach across the platform.",
-      dailyAmount: "₦14,999/month",
-      buttonText: "Go Elite",
-      listTitle: "All boosted features plus:",
+      title: "Weekly",
+      description: "Keep your job visible all week—steady exposure, better chances.",
+      dailyAmount: "₦4999/week",
+      buttonText: "Stay Visible",
+      listTitle: "All free features plus:",
       features: [
-        "Featured in newsletters",
-        "Highlighted on home page",
-        "SMS notifications to contractors",
-        "24/7 promotion support",
+        "Unlimited contract postings with premium visibility for a week.",
+        "Advanced contractor filtering and matching algorithm.",
+        "Dedicated account manager for ongoing support.",
+        "Custom contract template builder with legal review option.",
+      ],
+    },
+    {
+      title: "Monthly",
+      description: "Maximum visibility all month—ideal for long-term hiring goals.",
+      dailyAmount: "₦14,999/Month",
+      buttonText: "Go All In",
+      listTitle: "All free features plus:",
+      features: [
+        "Unlimited contract postings with premium visibility.",
+        "Advanced contractor filtering and matching algorithm.",
+        "Dedicated account manager for ongoing support.",
+        "Custom contract template builder with legal review option.",
       ],
     },
   ],
@@ -107,7 +121,13 @@ const pricingPlans = {
 const Pricing = () => {
   const [activeTab, setActiveTab] = useState<"bids" | "promotion">("bids");
 
-  const TabButton = ({ label, value }: { label: string; value: "bids" | "promotion" }) => {
+  const TabButton = ({
+    label,
+    value,
+  }: {
+    label: string;
+    value: "bids" | "promotion";
+  }) => {
     const isActive = activeTab === value;
 
     return (
@@ -135,68 +155,166 @@ const Pricing = () => {
     );
   };
 
- return (
-  <>
-    <BackgroundGrid py={10} px={6} sx={{ position: "relative", zIndex: 1 }}>
-      <Box sx={{ maxWidth: 800, mx: "auto", textAlign: "center", mb: 4 }}>
-        <Typography
+  return (
+    <>
+      <BackgroundGrid >
+        <Box sx={{ maxWidth: 800, mx: "auto", textAlign: "center", mb: 4 }}>
+          <Typography
+            sx={{
+              fontWeight: 600,
+              fontSize: { xs: "36px", md: "70px" },
+              lineHeight: { xs: "52px", md: "105px" },
+              letterSpacing: "-0.64px",
+            }}
+          >
+            Choose the plan for you
+          </Typography>
+          <Typography variant="body1" color="text.secondary" marginTop="6px">
+            Let nothing in your way as you scale your freelance enterprise.
+            <br />
+            Get started with a free plan or go pro today.
+          </Typography>
+        </Box>
+
+        <Box
           sx={{
-            fontWeight: 600,
-            fontSize: { xs: "36px", md: "70px" },
-            lineHeight: { xs: "52px", md: "105px" },
-            letterSpacing: "-0.64px",
+            width: "214px",
+            height: "48px",
+            border: "1px solid #0718B9",
+            borderRadius: "10px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            px: "8px",
+            mx: "auto",
+            mb: 4,
           }}
         >
-          Choose the plan for you
-        </Typography>
-        <Typography variant="body1" color="text.secondary">
-          Let nothing in your way as you scale your freelance enterprise.
-          <br />
-          Get started with a free plan or go pro today.
-        </Typography>
-      </Box>
+          <TabButton label="Bids" value="bids" />
+          <TabButton label="Promotion" value="promotion" />
+        </Box>
+      </BackgroundGrid>
 
-      {/* Tab Container */}
+      {/* Pricing Cards */}
       <Box
         sx={{
-          width: "214px",
-          height: "48px",
-          border: "1px solid #0718B9",
-          borderRadius: "10px",
           display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          px: "8px",
-          mx: "auto",
-          mb: 4,
+          flexDirection: "row",
+          gap: 2,
+          justifyContent: "center",
+          mt: -20,
+          zIndex: 2,
+          position: "relative",
+          p: 2,
+          flexWrap: "wrap",
         }}
       >
-        <TabButton label="Bids" value="bids" />
-        <TabButton label="Promotion" value="promotion" />
+        {pricingPlans[activeTab].map((plan, index) => (
+          <PricingCard key={index} {...plan} />
+        ))}
       </Box>
-    </BackgroundGrid>
 
-    {/* Card Container - Overlapping the BackgroundGrid */}
-    <Box
-      sx={{
-        display:"flex",
-        flexDirection:"row",
-         gap:2,
-        justifyContent:"center", 
-        mt: -40, // Negative margin to lift cards up into the BackgroundGrid
-        zIndex: 2,
-        position: "relative",
-        p: 2,
-        // flexWrap: "wrap", // Optional for mobile responsiveness
-      }}
-    >
-      {pricingPlans[activeTab].map((plan, index) => (
-        <PricingCard key={index} {...plan} />
-      ))}
-    </Box>
-    <BuildSection />
-  </>
-);
+      {/* Comparison Table */}
+      <Box
+        sx={{
+          maxWidth: "1000px",
+          mx: "auto",
+          mt: 10,
+          mb: 6,
+          px: 2,
+        }}
+      >
+        <Typography
+          variant="h4"
+          sx={{
+            fontWeight: 600,
+            fontSize: { xs: "24px", md: "32px" },
+            lineHeight: "1.4",
+            textAlign: "center",
+            mb: 3,
+          }}
+        >
+          Compare Plans & Features
+        </Typography>
+
+        <Box sx={{ width: "100%", overflowX: "auto" }}>
+          <Box
+            component="table"
+            sx={{
+              width: "100%",
+              borderCollapse: "collapse",
+              minWidth: "600px", // Optional: helps make the table scroll on small screens
+            }}
+          >
+            <thead>
+              <tr>
+                <th style={{ textAlign: "left", padding: "12px", border: "1px solid #ccc" }}>Features</th>
+                {(activeTab === "bids" ? pricingPlans.bids : pricingPlans.promotion).map((plan, idx) => (
+                  <th
+                    key={idx}
+                    style={{
+                      textAlign: "center",
+                      padding: "12px",
+                      border: "1px solid #ccc",
+                    }}
+                  >
+                    {plan.title}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {(activeTab === "bids"
+                ? [
+                    "Bid submissions",
+                    "Alerts",
+                    "Profile visibility",
+                    "Contract access",
+                    "Time commitment",
+                    "Recurring Payment",
+                    "Counter-offer Access",
+                    "Saved Contracts",
+                  ]
+                : [
+                    "Visibility",
+                    "Contract",
+                    "Advanced Features",
+                    "Templates",
+                    "Contractor Filtering",
+                    "Boost Duration",
+                    "Job Posting Quota",
+                  ]
+              ).map((featureTitle, rowIdx) => (
+                <tr key={rowIdx}>
+                  <td style={{ padding: "10px", border: "1px solid #ccc" }}>{featureTitle}</td>
+                  {(activeTab === "bids" ? pricingPlans.bids : pricingPlans.promotion).map((plan, planIdx) => {
+                    const match = plan.features.find((f) =>
+                      f.toLowerCase().includes(featureTitle.toLowerCase())
+                    );
+                    return (
+                      <td
+                        key={planIdx}
+                        style={{
+                          textAlign: "center",
+                          padding: "10px",
+                          border: "1px solid #ccc",
+                        }}
+                      >
+                        {match || "—"}
+                      </td>
+                    );
+                  })}
+                </tr>
+              ))}
+            </tbody>
+          </Box>
+        </Box>
+
+        </Box>
+      <FAQSection />
+      <BuildSection />
+    </>
+  );
 };
 
 export default Pricing;

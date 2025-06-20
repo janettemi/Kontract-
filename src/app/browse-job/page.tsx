@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import SearchInput from "@/conponent/SearchInput";
 import SelectInput from "@/conponent/SelectInput";
@@ -121,10 +121,10 @@ const BrowseJobs = () => {
     <>
       <Box
         sx={{
-          px: 4,
+          px: { xs: 2, sm: 3, md: 4 },
           py: 6,
           maxWidth: "1200px",
-          margin: "0 auto",
+          mx: "auto",
         }}
       >
         {/* Filters */}
@@ -142,7 +142,7 @@ const BrowseJobs = () => {
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search contractors, jobs..."
           />
-          <Box sx={{ display: "flex", gap: 2 }}>
+          <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
             <SelectInput
               label="Categories"
               value={role}
@@ -158,40 +158,48 @@ const BrowseJobs = () => {
           </Box>
         </Box>
 
-     <Box
-  sx={{
-    columnCount: 3,
-    columnGap: 5, // spacing between columns
-    maxWidth: "1200px",
-    mx: "auto",
-  }}
->
-  {jobs.map((job) => (
-    <Box
-      key={job.id}
-      sx={{
-        breakInside: "avoid",
-        mb: 3,
-      }}
-    >
-      <JobCard
-        postedTime={job.postedTime}
-        title={job.title}
-        jobTitle={job.jobTitle}
-        description={job.description}
-        priceRange={job.priceRange}
-        rating={job.rating}
-        location={job.location}
-        dueDate={job.dueDate}
-        bids={job.bids}
-        showPromotedButton={job.showPromotedButton}
-        showContactButton={job.showContactButton}
-        onButtonClick={() => alert(`Contacting for job: ${job.title}`)}
-      />
-    </Box>
-  ))}
-</Box>
-
+        {/* Responsive Job Cards */}
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 3,
+            justifyContent: { xs: "center", sm: "flex-start" },
+          }}
+        >
+          {jobs.map((job) => (
+            <Box
+              key={job.id}
+              sx={{
+                flex: {
+                  xs: "1 1 100%", // full width on mobile
+                  sm: "1 1 calc(50% - 24px)", // 2 per row on small screens
+                  md: "1 1 calc(33.333% - 24px)", // 3 per row on medium+
+                },
+                maxWidth: {
+                  xs: "100%",
+                  sm: "calc(50% - 24px)",
+                  md: "calc(33.333% - 24px)",
+                },
+              }}
+            >
+              <JobCard
+                postedTime={job.postedTime}
+                title={job.title}
+                jobTitle={job.jobTitle}
+                description={job.description}
+                priceRange={job.priceRange}
+                rating={job.rating}
+                location={job.location}
+                dueDate={job.dueDate}
+                bids={job.bids}
+                showPromotedButton={job.showPromotedButton}
+                showContactButton={job.showContactButton}
+                onButtonClick={() => alert(`Contacting for job: ${job.title}`)}
+              />
+            </Box>
+          ))}
+        </Box>
       </Box>
 
       <Box sx={{ mt: 6 }}>

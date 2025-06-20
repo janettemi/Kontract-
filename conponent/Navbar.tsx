@@ -72,6 +72,7 @@ const Navbar = () => {
       sx={{
         boxShadow: 'none',
         backgroundColor: '#fff',
+            borderBottom: '1px solid #eee',
         // Removed borderBottom
         width: '100%',
         mx: 'auto',
@@ -132,11 +133,11 @@ const Navbar = () => {
                       }}
                     />
                   </ListItem>
-                  <ListItem component={Link} href="/signup" onClick={toggleDrawer}>
+                  <ListItem component={Link} href="/sign-up" onClick={toggleDrawer}>
                     <ListItemText
                       primary="Sign Up"
                       primaryTypographyProps={{
-                        sx: linkStyles('/signup'),
+                        sx: linkStyles('/sign-up'),
                       }}
                     />
                   </ListItem>
@@ -182,7 +183,7 @@ const Navbar = () => {
               <Button
                 variant="contained"
                 component={Link}
-                href="/signup"
+                href="/sign-up"
                 sx={{
                   fontWeight: 600,
                   fontSize: '14px',

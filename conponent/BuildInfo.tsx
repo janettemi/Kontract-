@@ -119,7 +119,7 @@ export default function BuildSection() {
         <Box flex={1} zIndex={1} display="flex" justifyContent="center">
           <Box sx={{ width: { xs: '100%', sm: '80%', md: '270px' } }}>
             <Image
-              src="/image/Group.png"
+              src="/image/Frame 2147207718 (2).png"
               alt="group"
               width={270}
               height={287}
