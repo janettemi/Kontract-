@@ -47,7 +47,7 @@ export default function LoginCard() {
           justifyContent: 'center',
           gap: 3,
           mx: 'auto',
-          mt: 10,
+          mt: 5,
           boxShadow: { xs: 'none', sm: '0px 4px 20px rgba(0,0,0,0.05)' },
         }}
       >

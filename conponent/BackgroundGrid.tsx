@@ -7,7 +7,6 @@ const BackgroundGrid = ({ children, ...props }: BoxProps) => {
 
   const isXs = useMediaQuery(theme.breakpoints.down('sm'));
   const isSm = useMediaQuery(theme.breakpoints.between('sm', 'md'));
-  const isMdUp = useMediaQuery(theme.breakpoints.up('md'));
 
   const columns = isXs ? 6 : isSm ? 10 : 15;
   const rows = isXs ? 4 : isSm ? 5 : 6;
@@ -21,8 +20,6 @@ const BackgroundGrid = ({ children, ...props }: BoxProps) => {
         overflow: 'hidden',
         minHeight: '100vh',
         display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
         px: 2,
         ...props.sx,
       }}

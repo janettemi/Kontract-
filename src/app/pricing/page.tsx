@@ -158,7 +158,7 @@ const Pricing = () => {
   return (
     <>
       <BackgroundGrid >
-        <Box sx={{ maxWidth: 800, mx: "auto", textAlign: "center", mb: 4 }}>
+        <Box sx={{ maxWidth: 800,  mx: "auto", textAlign: "center", mb: 4  ,mt:10}}>
           <Typography
             sx={{
               fontWeight: 600,

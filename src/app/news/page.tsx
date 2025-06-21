@@ -11,6 +11,7 @@ import Image from 'next/image';
 import CategorySection from '@/conponent/CategoiesSection';
 import Link from 'next/link';
 import { ArticleCard } from '@/conponent/ArticleCard';
+import FAQPage from '../faqs/page';
 
 const CATEGORIES = ['All', 'Food', 'Job Search', 'Plants', 'Life Work'];
 
@@ -318,7 +319,7 @@ const News = () => {
           </Box>
         </Box>
       </Box>
-
+      <FAQPage />
     </Box>
   );
 };
