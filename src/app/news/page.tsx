@@ -10,6 +10,7 @@ import {
 import Image from 'next/image';
 import CategorySection from '@/conponent/CategoiesSection';
 import Link from 'next/link';
+import { ArticleCard } from '@/conponent/ArticleCard';
 
 const CATEGORIES = ['All', 'Food', 'Job Search', 'Plants', 'Life Work'];
 
@@ -100,28 +101,6 @@ const TRENDING_ITEMS = [
   },
 ];
 
- export const ArticleCard = ({
-  img,
-  title,
-  category,
-}: {
-  img: string;
-  title: string;
-  category: string;
-}) => (
-  <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 2, mt: 6 }}>
-    <Box
-      component="img"
-      src={img}
-      alt={category}
-      sx={{ width: { xs: '100%', md: 248 }, height: 159, borderRadius: 2, objectFit: 'cover' }}
-    />
-    <Box>
-      <Typography fontSize={14} fontWeight="bold" whiteSpace="pre-line">{title}</Typography>
-      <Button variant="outlined" sx={{ mt: 1, fontSize: 14,  border: '1px solid #E5E5E5', color:"black" ,borderRadius: '10px'  }}>{category}</Button>
-    </Box>
-  </Box>
-);
 
 const News = () => {
   const [activeCategory, setActiveCategory] = useState('All');
