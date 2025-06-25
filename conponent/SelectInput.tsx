@@ -3,12 +3,17 @@
 import React from 'react';
 import {
   Box,
+  Divider,
   FormControl,
   InputLabel,
   MenuItem,
   Select,
   SelectChangeEvent,
+  Typography,
+  Checkbox,
+  ListItemText,
 } from '@mui/material';
+import { Cancel } from '@mui/icons-material';
 
 interface SelectInputProps {
   label?: string;
@@ -29,6 +34,10 @@ export default function SelectInput({
     onChange(event.target.value);
   };
 
+  const handleClear = () => {
+    onChange('');
+  };
+
   return (
     <Box sx={{ minWidth: 200 }}>
       <FormControl fullWidth={fullWidth}>
@@ -42,12 +51,24 @@ export default function SelectInput({
             backgroundColor: '#fff',
             height: '48px',
           }}
+          renderValue={(selected) => {
+            const selectedOption = options.find((opt) => opt.value === selected);
+            return selectedOption ? selectedOption.label : '';
+          }}
         >
           {options.map((option) => (
             <MenuItem key={option.value} value={option.value}>
-              {option.label}
+              <Checkbox checked={value === option.value} />
+              <ListItemText primary={option.label} />
             </MenuItem>
           ))}
+
+          <Divider />
+
+          <MenuItem onClick={handleClear} sx={{ display: 'flex', justifyContent: 'space-between', }}>
+            <Typography sx={{color:"#0A0D14", fontWeight:"400"}}>Clear</Typography>
+            <Cancel sx={{ fontSize: 18, color:"#0718B9" }} />
+          </MenuItem>
         </Select>
       </FormControl>
     </Box>

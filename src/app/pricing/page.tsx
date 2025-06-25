@@ -196,17 +196,16 @@ const Pricing = () => {
       </BackgroundGrid>
 
       {/* Pricing Cards */}
-      <Box
+       <Box
         sx={{
           display: "flex",
-          flexDirection: "row",
-          gap: 2,
-          justifyContent: "center",
-          mt: -20,
-          zIndex: 2,
-          position: "relative",
-          p: 2,
           flexWrap: "wrap",
+          gap: "16px",
+          maxWidth: "1192px",
+          width: "100%",
+          mx:"auto",
+          mt:"-40px",
+          justifyContent: "center",
         }}
       >
         {pricingPlans[activeTab].map((plan, index) => (
@@ -217,11 +216,19 @@ const Pricing = () => {
       {/* Comparison Table */}
       <Box
         sx={{
-          maxWidth: "1000px",
+          
           mx: "auto",
           mt: 10,
           mb: 6,
           px: 2,
+           display: "flex",
+          flexWrap: "wrap",
+          gap: "16px",
+          maxWidth: "1192px",
+          width: "100%",
+         
+          
+          justifyContent: "center",
         }}
       >
         <Typography
@@ -309,7 +316,6 @@ const Pricing = () => {
             </tbody>
           </Box>
         </Box>
-
         </Box>
       <FAQSection />
       <BuildSection />

@@ -5,16 +5,16 @@ import {
   Button,
   TextField,
   Typography,
-  InputBaseComponentProps,
 } from '@mui/material';
 import { useRef, useState } from 'react';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import BackgroundGrid from '@/conponent/BackgroundGrid';
 import Image from 'next/image';
 
 export default function VerifyCodeCard() {
   const [otp, setOtp] = useState<string[]>(Array(6).fill(''));
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
+  const router = useRouter(); // <-- Step 1
 
   const handleChange = (index: number, value: string) => {
     if (!/^\d*$/.test(value)) return;
@@ -29,7 +29,9 @@ export default function VerifyCodeCard() {
 
   const handleSubmit = () => {
     const code = otp.join('');
-    alert(`Verifying code: ${code}`);
+    console.log(`Verifying code: ${code}`);
+    // TODO: You can add actual verification logic here
+    router.push('/dashboard'); // <-- Step 2: Redirect after success
   };
 
   const handleResend = () => {
@@ -61,38 +63,39 @@ export default function VerifyCodeCard() {
         </Typography>
 
         {/* OTP Boxes */}
-            <Box
-            sx={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                gap: 1,
-                mb: 4,
-                flexWrap: 'nowrap', // ensure a single straight line
-                maxWidth: { xs: 280, sm: 320, md: 360 },
-                mx: 'auto', // center the line
-            }}
-            >
-            {otp.map((digit, index) => (
-                <TextField
-                key={index}
-                value={digit}
-                onChange={(e) => handleChange(index, e.target.value)}
-                inputRef={(el) => (inputRefs.current[index] = el)}
-                inputProps={{
-                    maxLength: 1,
-                    style: {
-                    width: 48,
-                    height: 48,
-                    textAlign: 'center',
-                    fontSize: 18,
-                    borderRadius: 12,
-                    border: '1px solid #E5E5E5',
-                    background: '#F6F6F6',
-                    },
-                }}
-                />
-            ))}
-            </Box>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            gap: 1,
+            mb: 4,
+            flexWrap: 'nowrap',
+            maxWidth: { xs: 280, sm: 320, md: 360 },
+            mx: 'auto',
+          }}
+        >
+          {otp.map((digit, index) => (
+            <TextField
+              key={index}
+              value={digit}
+              onChange={(e) => handleChange(index, e.target.value)}
+              inputRef={(el) => (inputRefs.current[index] = el)}
+              inputProps={{
+                maxLength: 1,
+                style: {
+                  width: 48,
+                  height: 48,
+                  textAlign: 'center',
+                  fontSize: 18,
+                  borderRadius: 12,
+                  border: '1px solid #E5E5E5',
+                  background: '#F6F6F6',
+                },
+              }}
+            />
+          ))}
+        </Box>
+
         <Button
           onClick={handleSubmit}
           disabled={otp.some((digit) => digit === '')}
@@ -123,11 +126,11 @@ export default function VerifyCodeCard() {
           sx={{ cursor: 'pointer', fontWeight: 500 }}
           onClick={handleResend}
         >
-          Experiencing issues receiving the code?{' '}
+          Experiencing issues receiving the code?
         </Typography>
         <Box component="span" sx={{ textDecoration: 'underline' }}>
-            Resend code
-          </Box>
+          Resend code
+        </Box>
       </Box>
     </BackgroundGrid>
   );

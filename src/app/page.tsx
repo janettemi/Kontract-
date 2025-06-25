@@ -101,7 +101,7 @@ useEffect(() => {
   return (
     <>
       {/* Hero Section */}
-      <BackgroundGrid py={10} px={1}>
+      <BackgroundGrid>
         <Box 
          sx={{
           display: 'flex',

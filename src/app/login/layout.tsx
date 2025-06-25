@@ -4,9 +4,6 @@ import { AppBar, Box, Toolbar, Typography, IconButton } from '@mui/material';
 import Link from 'next/link';
 import Image from 'next/image';
 import React from 'react';
-import LanguageIcon from '@mui/icons-material/Language';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import TwitterIcon from '@mui/icons-material/Twitter';
 
 const NAVBAR_HEIGHT = { xs: '64px', sm: '72px', md: '88px' };
 
@@ -68,33 +65,6 @@ export default function LoginLayout({
       {/* Page Content */}
       <Box component="main" flex={1}>
         {children}
-      </Box>
-
-      {/* Footer */}
-      <Box
-        component="footer"
-        sx={{
-          borderTop: '1px solid #eee',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          px: 3,
-          py: 2,
-          fontSize: 14,
-          flexWrap: 'wrap',
-        }}
-      >
-        <Typography color="#556882">© 2025 Kontract</Typography>
-
-        <Box display="flex" alignItems="center" gap={2}>
-          <IconButton size="small" aria-label="Facebook" sx={{ color: '#556882' }}>
-            <FacebookIcon fontSize="small" />
-          </IconButton>
-          <Typography color="#556882">ENG</Typography>
-          <IconButton size="small" aria-label="Twitter" sx={{ color: '#556882' }}>
-            <TwitterIcon fontSize="small" />
-          </IconButton>
-        </Box>
       </Box>
     </Box>
   );

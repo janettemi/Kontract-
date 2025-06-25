@@ -72,8 +72,7 @@ const Navbar = () => {
       sx={{
         boxShadow: 'none',
         backgroundColor: '#fff',
-            borderBottom: '1px solid #eee',
-        // Removed borderBottom
+        borderBottom: '1px solid #eee',
         width: '100%',
         mx: 'auto',
         zIndex: (theme) => theme.zIndex.drawer + 1,

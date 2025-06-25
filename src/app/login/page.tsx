@@ -19,6 +19,9 @@ import { useState } from 'react';
 import BackgroundGrid from '@/conponent/BackgroundGrid';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation'; // ✅ Add this
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
+
 
 export default function LoginCard() {
   const [email, setEmail] = useState('');
@@ -183,6 +186,31 @@ export default function LoginCard() {
             Register
           </Link>
         </Typography>
+      </Box>
+
+      {/* Footer */}
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          px: 3,
+          py: 2,
+          fontSize: 14,
+          flexWrap: 'wrap',
+        }}
+      >
+        <Typography color="#556882">© 2025 Kontract</Typography>
+
+        <Box display="flex" alignItems="center" gap={2}>
+          <IconButton size="small" aria-label="Facebook" sx={{ color: '#556882' }}>
+            <FacebookIcon fontSize="small" />
+          </IconButton>
+          <Typography color="#556882">ENG</Typography>
+          <IconButton size="small" aria-label="Twitter" sx={{ color: '#556882' }}>
+            <TwitterIcon fontSize="small" />
+          </IconButton>
+        </Box>
       </Box>
     </BackgroundGrid>
   );

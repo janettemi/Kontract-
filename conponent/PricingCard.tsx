@@ -26,61 +26,64 @@ const PricingCard = ({
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-   <Box
-   sx={{
+    <Box
+  sx={{
     position: "relative",
-    maxWidth: "286px", // Keep this max width
-    flex: "1 1 286px",  // Allow flex to wrap and grow nicely
+    maxWidth: "286px",
+    flex: "1 1 286px",
+    height: "536px",
+    mt: { xs: 5, md: -6 }, // ← Add this line
   }}
   onMouseEnter={() => setIsHovered(true)}
   onMouseLeave={() => setIsHovered(false)}
 >
-  {/* Recommended Label - Absolutely Positioned */}
-  <AnimatePresence>
-    {isHovered && (
+      {/* Recommended Label */}
+      <AnimatePresence>
+        {isHovered && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            style={{
+              position: "absolute",
+              top: "-28px",
+              left: "0",
+              width: "286px",
+              height: "28px",
+              backgroundColor: "#0718B9",
+              color: "#fff",
+              borderTopLeftRadius: "12.11px",
+              borderTopRightRadius: "12.11px",
+              border: "3px solid #0718B9",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontWeight: 500,
+              gap: "6px",
+              zIndex: 2,
+            }}
+          >
+            <ThumbUpIcon fontSize="small" />
+            Recommended
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Card */}
       <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -10 }}
+        whileHover={{ scale: 1.02 }}
         style={{
-          position: "absolute",
-          top: "-28px",
-          left: "0",
-          width: "286px",
-          height: "28px",
-          backgroundColor: "#0718B9",
-          color: "#fff",
-          borderTopLeftRadius: "12.11px",
-          borderTopRightRadius: "12.11px",
-          border: "3px solid #0718B9",
+          borderRadius: "12px",
+          backgroundColor: "#fff",
           display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          fontWeight: 500,
-          gap: "6px",
-          zIndex: 2,
+          flexDirection: "column",
+          padding: "24px",
+          border: isHovered ? "3px solid #0718B9" : "1px solid #ccc",
+          boxShadow: isHovered ? "0px 4px 20px rgba(0,0,0,0.04)" : "none",
+          height: "100%",
+          transition: "all 0.3s ease",
         }}
       >
-        <ThumbUpIcon fontSize="small" />
-        Recommended
-      </motion.div>
-    )}
-  </AnimatePresence>
-
-  {/* Card */}
-  <motion.div
-    whileHover={{ scale: 1.02 }}
-    style={{
-      borderRadius: "12px",
-      backgroundColor: "#fff",
-      display: "flex",
-      flexDirection: "column",
-      padding: "24px",
-      border: isHovered ? "3px solid #0718B9" : "1px solid #ccc",
-      boxShadow: isHovered ? "0px 4px 20px rgba(0,0,0,0.04)" : "none",
-      transition: "all 0.3s ease",
-    }}
-  >
         <Typography variant="h6" fontWeight={600} mb={1}>
           {title}
         </Typography>
@@ -92,7 +95,12 @@ const PricingCard = ({
           <Typography fontSize="32px" fontWeight={700}>
             {amount}
           </Typography>
-          <Typography component="span" fontSize="14px" color="text.secondary" ml={0.5}>
+          <Typography
+            component="span"
+            fontSize="14px"
+            color="text.secondary"
+            ml={0.5}
+          >
             /{period}
           </Typography>
         </Box>

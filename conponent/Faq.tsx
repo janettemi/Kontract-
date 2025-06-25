@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useState } from "react";
 import {
   Box,
@@ -6,22 +6,20 @@ import {
   Button,
   Collapse,
   IconButton,
-  //useMediaQuery,
-  //useTheme,
 } from "@mui/material";
 import { ExpandMore, ExpandLess } from "@mui/icons-material";
 import { useRouter } from "next/navigation";
-
 
 const faqs = [
   {
     question: "What makes Kontract different?",
     answer:
-      "Thepeer is a business infrastructure provider enabling seamless transactions across multiple platforms through wallets. Integrating with Thepeer will grant a better payment experience to your customers and help you boost retention as you do not have to experience card payment failures.",
+      "Thepeer is a business infrastructure provider enabling seamless transactions across multiple platforms through wallets...",
   },
   {
     question: "How can I pay a contractor on Contra?",
-    answer: "Yes! We offer a free plan with basic features to help you get started.",
+    answer:
+      "Yes! We offer a free plan with basic features to help you get started.",
   },
   {
     question: "Does Thepeer work for customers or businesses?",
@@ -29,54 +27,51 @@ const faqs = [
       "You can subscribe to a higher plan or promote your listings using the promotion options available.",
   },
   {
-    question: "Does Thepeer work for customers or businesses?",
+    question: "Is Thepeer secure?",
     answer:
-      "You can subscribe to a higher plan or promote your listings using the promotion options available.",
+      "Yes, Thepeer uses industry-standard security practices and encryption to keep your data safe.",
   },
 ];
 
 export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
- // const theme = useTheme();
-  //const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-const router = useRouter();
+  const router = useRouter();
+
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
     <Box
-        sx={{
-            backgroundColor: "#02083E",
-            mx: "auto",
-            mb:"6",
-            px: { xs: 3, sm: 4 },
-            py: { xs: 6, sm: 8 },
-            width: "100%",
-            maxWidth: "1056px", // This limits the width
-            height: { xs: "auto", md: "556px" }, // Fixed height from md and up
-            overflowY: "auto", // In case content exceeds height
-        }}
-        >
+      sx={{
+        backgroundColor: "#02083E",
+        mx: "auto",
+        px: { xs: 3, sm: 4 },
+        py: { xs: 6, sm: 8 },
+        width: { xs: "100%", md: "1056px" },
+        height: { xs: "auto", md: "556px" },
+        overflowY: { md: "auto" }, // Scroll if content overflows on large screens
+        borderRadius: "12px",
+        mb:6
+      }}
+    >
       <Box
         sx={{
-          maxWidth: "1056px",
-          mx: "auto",
           display: "flex",
           flexDirection: { xs: "column", md: "row" },
-          gap: { xs: 4, md: "162px" },
+          justifyContent: "space-between",
           alignItems: "flex-start",
+          gap: { xs: 6, md: "120px" },
         }}
       >
-        {/* Left Side */}
+        {/* Left Column */}
         <Box
           sx={{
             flex: 1,
+            color: "#fff",
             display: "flex",
             flexDirection: "column",
-            p:"6px",
-            color: "#fff",
-            gap: 6,
+            gap: 4,
           }}
         >
           <Typography
@@ -100,6 +95,7 @@ const router = useRouter();
               width: "fit-content",
               px: 3,
               py: 1.5,
+              fontWeight: 500,
               "&:hover": {
                 backgroundColor: "#e4e4e4",
               },
@@ -109,8 +105,8 @@ const router = useRouter();
           </Button>
         </Box>
 
-        {/* Right Side - FAQ List */}
-        <Box sx={{ flex: 2 }}>
+        {/* Right Column - FAQ List */}
+        <Box sx={{ flex: 2, width: "100%" }}>
           {faqs.map((faq, index) => (
             <Box
               key={index}
@@ -120,6 +116,7 @@ const router = useRouter();
               }}
             >
               <Box
+                onClick={() => toggleFAQ(index)}
                 sx={{
                   display: "flex",
                   justifyContent: "space-between",
@@ -128,12 +125,11 @@ const router = useRouter();
                   color: "#fff",
                   fontSize: "16px",
                   fontWeight: 500,
-                  py: 1,
+                  py: 1.5,
                 }}
-                onClick={() => toggleFAQ(index)}
               >
-                {faq.question}
-                <IconButton sx={{ color: "#fff" }}>
+                <Typography sx={{ flex: 1 }}>{faq.question}</Typography>
+                <IconButton sx={{ color: "#fff" }} size="small">
                   {openIndex === index ? <ExpandLess /> : <ExpandMore />}
                 </IconButton>
               </Box>
@@ -142,7 +138,7 @@ const router = useRouter();
                   sx={{
                     color: "#ddd",
                     fontSize: "14px",
-                    pb: 1,
+                    pb: 2,
                     pl: 1,
                     pr: 2,
                   }}

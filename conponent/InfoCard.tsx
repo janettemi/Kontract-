@@ -1,14 +1,10 @@
 'use client';
 
 import React from 'react';
-import { Box, Typography, Card, CardContent, useTheme, useMediaQuery } from '@mui/material';
+import { Box, Typography, Card, CardContent } from '@mui/material';
 import Image from 'next/image';
 
 export default function InfoCardSection() {
-  const theme = useTheme();
-  const isSm = useMediaQuery(theme.breakpoints.down('sm'));
-  const isMd = useMediaQuery(theme.breakpoints.between('sm', 'md'));
-
   const cardData = [
     {
       iconSrc: "/icons/SVG (1).png",

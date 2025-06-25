@@ -1,3 +1,5 @@
+'use client';
+
 import { Box, Typography } from '@mui/material';
 import { styled } from '@mui/system';
 import CustomButton from './CustomButton';
@@ -23,27 +25,47 @@ const DotGrid = styled(Box)(({ theme }) => ({
   },
 }));
 
-const Container = styled(Box)({
+const Container = styled(Box)(({ theme }) => ({
   position: 'relative',
   backgroundColor: '#fff',
   boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
   borderRadius: '16px',
   padding: '40px 24px',
-});
+  margin: '60px auto',
+
+  [theme.breakpoints.up('md')]: {
+    maxWidth: '1440px',
+    height: '500px',
+  },
+
+  [theme.breakpoints.down('md')]: {
+    padding: '32px 16px',
+    height: 'auto',
+  },
+}));
 
 const ContentWrapper = styled(Box)(({ theme }) => ({
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
   flexDirection: 'row',
-  gap: '48px',
+  gap: '67px', // ← updated based on your request
+  width: '1163px', // ← fixed width
+  height: '360px', // ← fixed height
+  marginTop: '70px', // ← top offset
+  marginLeft: '155px', // ← left offset
 
   [theme.breakpoints.down('md')]: {
     flexDirection: 'column-reverse',
     textAlign: 'center',
+    width: '100%',
+    height: 'auto',
+    marginLeft: 0,
+    marginTop: '40px',
     gap: '32px',
   },
 }));
+
 
 export default function BuildSection() {
   return (

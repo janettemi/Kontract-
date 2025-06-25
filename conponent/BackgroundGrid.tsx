@@ -20,17 +20,20 @@ const BackgroundGrid = ({ children, ...props }: BoxProps) => {
         overflow: 'hidden',
         minHeight: '100vh',
         display: 'flex',
+        flexDirection: 'column',
+        pt: '88px', // Ensure grid content is not hidden under navbar
+        width: '100%',
         px: 2,
         ...props.sx,
       }}
     >
-      {/* Vertical Dotted Lines */}
+      {/* Vertical Grid Lines */}
       {Array.from({ length: columns + 1 }).map((_, i) => (
         <Box
           key={`v-${i}`}
           sx={{
             position: 'absolute',
-            top: '10%', // short line, not full height
+            top: '10%',
             bottom: '10%',
             left: `${(i / columns) * 100}%`,
             width: '1px',
@@ -41,13 +44,13 @@ const BackgroundGrid = ({ children, ...props }: BoxProps) => {
         />
       ))}
 
-      {/* Horizontal Dotted Lines */}
+      {/* Horizontal Grid Lines */}
       {Array.from({ length: rows + 1 }).map((_, i) => (
         <Box
           key={`h-${i}`}
           sx={{
             position: 'absolute',
-            left: '10%', // short line, not full width
+            left: '10%',
             right: '10%',
             top: `${(i / rows) * 100}%`,
             height: '1px',
@@ -58,7 +61,7 @@ const BackgroundGrid = ({ children, ...props }: BoxProps) => {
         />
       ))}
 
-      {/* Foreground Content */}
+      {/* Content goes here */}
       <Box sx={{ position: 'relative', zIndex: 1, width: '100%' }}>
         {children}
       </Box>

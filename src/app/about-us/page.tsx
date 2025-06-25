@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const About = () => {
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
+    <Box sx={{ display: "flex", flexDirection: "column",  }}>
       <BackgroundGrid>
         <Box
           sx={{
