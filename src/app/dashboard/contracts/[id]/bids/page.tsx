@@ -1,15 +1,16 @@
-// components/AllBids.tsx
 'use client';
 
 import { Box, Typography } from "@mui/material";
 import BidCard from "@/conponent/BidCard";
 import BreadcrumbHeader from "@/conponent/BreadcrumbHeader";
+import { useRouter } from "next/navigation"; // <-- ADD THIS
 import { useState } from "react";
 import ContractorProfile from "../ContractorProfile";
 
+const AllBids = () => {
+  const router = useRouter(); 
+  const [selectedContractorId, setSelectedContractorId] = useState<string | null>(null);
 
-const AllBids = ({ onBack }: { onBack: () => void }) => {
-const [selectedContractorId, setSelectedContractorId] = useState<string | null>(null);
   const bids = [
     {
         contractorId: "hamid001",
@@ -50,7 +51,7 @@ const [selectedContractorId, setSelectedContractorId] = useState<string | null>(
     <Box display="flex" flexDirection="column" gap={3}>
       <BreadcrumbHeader
         items={[
-          { label: "Contracts", onClick: onBack },
+          { label: "Contracts", onClick: () => router.back() }, // <-- USE ROUTER
           { label: "Construction of gutter in Ibadan" },
           { label: "All bids", isActive: true },
         ]}
