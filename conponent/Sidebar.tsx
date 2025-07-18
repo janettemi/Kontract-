@@ -23,9 +23,9 @@ const mainItems = [
   { text: 'My Contract', icon: '/icons/note.png', href: '/dashboard/contracts' },
   { text: 'My Services', icon: '/icons/briefcase.png', href: '/dashboard/services' },
   { text: 'My Bids', icon: '/icons/Mask group.png', href: '/dashboard/bids' },
-  { text: 'Saved Items', icon: '/icons/save-add.png', href: '/dashboard/saved' },
+  { text: 'Saved Items', icon: '/icons/save-add.png', href: '/dashboard/saved-items' },
   { text: 'Messages', icon: '/icons/sms-tracking.png', href: '/dashboard/messages' },
-  { text: 'Transactions', icon: '/icons/receipt.png', href: '/dashboard/transactions' },
+  { text: 'Transactions', icon: '/icons/receipt.png', href: '/dashboard/transactions-log' },
 ];
 
 const otherItems = [

@@ -13,7 +13,20 @@ const HIDDEN_LAYOUT_PATHS = [
   '/sign-up/confirm-email-page',
   '/login/verify-code-card',
   '/dashboard',
+  '/post-contract',
+  "/post-contract/location",
+  "/post-contract/financial-terms",
+   '/post-contract/contract-details',
+   '/edit-contract',
+   "/edit-contract/edit-location",
+   "/edit-contract/edit-financial-terms",
+   "/post-service",
+   "/post-service/service-location",
+   "/post-service/service-financial-terms",
+   "/post-service/service-details"
 ];
+
+
 
 export default function LayoutClient({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();

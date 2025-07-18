@@ -13,9 +13,8 @@ import {
   MenuItem,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import AddIcon from '@mui/icons-material/Add';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
 import Image from 'next/image';
 import NotificationDropdown from './Notification';
@@ -29,6 +28,8 @@ export default function DashboardNavbar({ onToggleSidebar }: { onToggleSidebar: 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const toggleSearch = () => setShowSearch(!showSearch);
+
+  const router = useRouter()
 
   const getTitle = (path: string) => {
     const last = path.split('/').pop() || 'Dashboard';
@@ -45,10 +46,12 @@ export default function DashboardNavbar({ onToggleSidebar }: { onToggleSidebar: 
   };
 
   const handlePostOptionClick = (type: 'contract' | 'service') => {
-    // 🔁 Replace this with navigation logic or a modal trigger
-    console.log(`Post a ${type}`);
+    router.push("/post-contract")
+    router.push("/post-service")
     handleClose();
   };
+  
+
 
   return (
     <AppBar
@@ -82,6 +85,7 @@ export default function DashboardNavbar({ onToggleSidebar }: { onToggleSidebar: 
               <MenuIcon />
             </IconButton>
           )}
+          
           <Typography
             sx={{
               fontFamily: '"BR Firma", sans-serif',
@@ -173,7 +177,9 @@ export default function DashboardNavbar({ onToggleSidebar }: { onToggleSidebar: 
               },
             }}
           >
-            <MenuItem onClick={() => handlePostOptionClick('contract')}>Post a contract</MenuItem>
+            <MenuItem onClick={() => handlePostOptionClick('contract')} 
+            
+            >Post a contract</MenuItem>
             <MenuItem onClick={() => handlePostOptionClick('service')}>Post a service</MenuItem>
           </Menu>
           </Box>

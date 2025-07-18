@@ -1,10 +1,10 @@
 'use client';
 
+import { useState } from "react";
+import { Box } from "@mui/material";
 import SearchInput from "@/conponent/SearchInput";
 import SelectInput from "@/conponent/SelectInput";
 import JobCard from "@/conponent/JobCard";
-import { Box } from "@mui/material";
-import { useState } from "react";
 
 const jobs = [
   {
@@ -82,83 +82,73 @@ const jobs = [
     showPromotedButton: true,
     showContactButton: true,
   },
-  {
-    id: 4,
-    postedTime: "4 days ago",
-    title: "Fix Air Conditioning Unit",
-    jobTitle: "HVAC Technician",
-    description:
-      "AC is not cooling properly. Need diagnosis and repair before weekend.",
-    priceRange: "$100 - $200",
-    rating: 4,
-    location: "Port Harcourt",
-    dueDate: "June 18, 2025",
-    bids: 2,
-     showPromotedButton: true,
-    showContactButton: true,
-  },
 ];
 
 const BrowseJobs = () => {
-  const [role, setRole] = useState("");
-  const [department, setDepartment] = useState("");
+  const [role, setRole] = useState("all");
+  const [department, setDepartment] = useState("all");
   const [search, setSearch] = useState("");
 
   const roles = [
     { label: "All", value: "all" },
     { label: "Contracts", value: "contracts" },
-    { label: "Serivices", value: "serivices" },
+    { label: "Services", value: "services" },
   ];
 
   const departments = [
     { label: "All", value: "all" },
     { label: "Remote", value: "remote" },
-    { label: "lagos", value: "lagos" },
+    { label: "Lagos", value: "lagos" },
     { label: "Ibadan", value: "ibadan" },
   ];
 
+  const filteredJobs = jobs.filter((job) => {
+    const matchesSearch =
+      job.title.toLowerCase().includes(search.toLowerCase()) ||
+      job.description.toLowerCase().includes(search.toLowerCase());
+
+    const matchesRole = role === "all" || job.jobTitle.toLowerCase().includes(role);
+    const matchesLocation =
+      department === "all" ||
+      job.location.toLowerCase().includes(department.toLowerCase());
+
+    return matchesSearch && matchesRole && matchesLocation;
+  });
+
   return (
-    <>
+    <Box sx={{ px: { xs: 2, sm: 3, md: 2 }, py: 4, mx: "auto" }}>
+      {/* Filters */}
       <Box
         sx={{
-          px: { xs: 2, sm: 3, md: 4 },
-          py: 4,
-          mx: "auto",
+          display: "flex",
+          justifyContent: "space-between",
+          flexWrap: "wrap",
+          gap: 2,
+          mb: 4,
         }}
       >
-        {/* Filters */}
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            flexWrap: "wrap",
-            gap: 2,
-            mb: 4,
-          }}
-        >
-          <SearchInput
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search contractors, jobs..."
+        <SearchInput
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Search contractors, jobs..."
+        />
+        <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
+          <SelectInput
+            label="Categories"
+            value={role}
+            options={roles}
+            onChange={setRole}
           />
-          <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
-            <SelectInput
-              label="Categories"
-              value={role}
-              options={roles}
-              onChange={setRole}
-            />
-            <SelectInput
-              label="Location"
-              value={department}
-              options={departments}
-              onChange={setDepartment}
-            />
-          </Box>
+          <SelectInput
+            label="Location"
+            value={department}
+            options={departments}
+            onChange={setDepartment}
+          />
         </Box>
+      </Box>
 
-        {/* Responsive Job Cards */}
-        <Box
+       <Box
           sx={{
             display: "flex",
             flexWrap: "wrap",
@@ -166,17 +156,17 @@ const BrowseJobs = () => {
             justifyContent: { xs: "center", sm: "flex-start" },
           }}
         >
-          {jobs.map((job) => (
+          {filteredJobs.map((job) => (
             <Box
               key={job.id}
               sx={{
                 flex: {
-                  xs: "1 1 100%", // full width on mobile
-                  sm: "1 1 calc(50% - 24px)", // 2 per row on small screens
+                  xs: "1 1 100%",
+                  sm: "1 1 calc(50% - 12px)", // Two per row with spacing
                 },
                 maxWidth: {
                   xs: "100%",
-                  sm: "calc(50% - 24px)",
+                  sm: "calc(50% - 12px)", // Maintain spacing
                 },
               }}
             >
@@ -197,8 +187,8 @@ const BrowseJobs = () => {
             </Box>
           ))}
         </Box>
-      </Box>
-    </>
+
+    </Box>
   );
 };
 

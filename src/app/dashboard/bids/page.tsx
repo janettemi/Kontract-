@@ -21,15 +21,12 @@ import CustomButton from "@/conponent/CustomButton";
 import { useRouter } from "next/navigation";
 
 const statusColors: Record<string, { color: string; bg: string }> = {
-  "Expired": { color: "#D60000", bg: "#FDEDF0" },
+  "Closed": { color: "#D60000", bg: "#FDEDF0" },
   "In Progress": { color: "#007C91", bg: "#E5F7FA" },
-  "Draft": { color: "#6B7280", bg: "#F2F2F2" },
-  "In Review": { color: "#FF9500", bg: "#FFF1E5" },
-  "Completed": { color: "#34C759", bg: "#EFFAF6" },
-  "Posted": { color: "#5A65D0", bg: "#E6F0FA" },
+  "Opened": { color: "#34C759", bg: "#EFFAF6" }
 };
 
-const Contracts = () => {
+const Bids = () => {
   const [role, setRole] = useState("");
   const [department, setDepartment] = useState("");
   const [search, setSearch] = useState("");
@@ -53,20 +50,10 @@ const Contracts = () => {
     const handleClose = () => setAnchorEl(null);
 
     const handleAction = (action: string) => {
-      if (action === "view") router.push(`/dashboard/contracts/${row.id}/view-details`);
-      if (action === "openDispute") router.push(`/dashboard/contracts/${row.id}/submit-dispute`);
-      if (action === "bids") router.push(`/dashboard/contracts/${row.id}/bids`);
+      if (action === "view") router.push(`/dashboard/bids/${row.id}/view-bids`);
       if (action === "remove") onDelete(row);
-      if (action === "edit") router.push(`/edit-contract`)
       handleClose();
     };
-
-    const status = row.status;
-    const showEdit = ["Draft", "In Progress", "Expired", "In Review", "Posted"].includes(status);
-    const showView = true;
-    const showBids = ["In Progress", "Posted"].includes(status);
-    const showDelete = ["Draft", "Expired"].includes(status);
-    const showMarkAsCompleted = status === "In Progress";
 
     return (
       <>
@@ -78,45 +65,18 @@ const Contracts = () => {
           anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
           transformOrigin={{ vertical: "top", horizontal: "right" }}
         >
-          {showEdit && (
-            <MenuItem onClick={() => handleAction("edit")} sx={{ display: "flex", gap: 2 }}>
-              <Image src="/icons/edit-2.png" alt="Edit" width={16} height={16} />
-              <ListItemText>Edit contract</ListItemText>
-            </MenuItem>
-          )}
-          {showBids && (
-            <MenuItem onClick={() => handleAction("bids")} sx={{ display: "flex", gap: 2 }}>
-              <Image src="/icons/Mask group.png" alt="Bids" width={16} height={16} />
-              <ListItemText>Bids</ListItemText>
-            </MenuItem>
-          )}
-          {status === "Completed" && (
-            <MenuItem onClick={() => handleAction("openDispute")} sx={{ display: "flex", gap: 2 }}>
-              <Image src="/icons/direct.png" alt="Dispute" width={16} height={16} />
-              <ListItemText>Open a dispute</ListItemText>
-            </MenuItem>
-          )}
-          {showView && (
+
             <MenuItem onClick={() => handleAction("view")} sx={{ display: "flex", gap: 2 }}>
               <Image src="/icons/eye.png" alt="View" width={16} height={16} />
-              <ListItemText>View details</ListItemText>
+              <ListItemText>View bids</ListItemText>
             </MenuItem>
-          )}
-          {showDelete && (
+        
+          
             <MenuItem onClick={() => handleAction("remove")} sx={{ display: "flex", gap: 2, color: "#FF3B30" }}>
               <Image src="/icons/trash.png" alt="Delete" width={16} height={16} />
-              <ListItemText>Remove contract</ListItemText>
+              <ListItemText>Remove bids</ListItemText>
             </MenuItem>
-          )}
-          {showMarkAsCompleted && (
-            <MenuItem onClick={() => handleAction("markCompleted")} sx={{ display: "flex", gap: 2, color: "#34C759" }}>
-              <Image src="/icons/Vector (4).png" alt="Complete" width={16} height={16} />
-              <ListItemText>Mark as completed</ListItemText>
-              <Tooltip title="When your contractor completes all required work, click to finalize." arrow>
-                <InfoOutlinedIcon fontSize="small" sx={{ color: '#6B7280', cursor: 'pointer' }} />
-              </Tooltip>
-            </MenuItem>
-          )}
+    
         </Menu>
       </>
     );
@@ -125,7 +85,6 @@ const Contracts = () => {
   const columns = [
     { label: 'Contract title', key: 'contractTitle' },
     { label: 'Amount', key: 'amount' },
-    { label: 'Category/skill', key: 'categorySkill' },
     {
       label: 'Status',
       key: 'status',
@@ -139,9 +98,8 @@ const Contracts = () => {
       },
     },
     { label: 'Location', key: 'location' },
-    { label: 'Bids', key: 'bids' },
     { label: 'Date Created', key: 'dateCreated' },
-    { label: 'Payment Method', key: 'paymentMethod' },
+    { label: 'Proposed Due Date', key: 'proposedDueDate' },
     {
       label: '',
       key: 'actions',
@@ -150,22 +108,18 @@ const Contracts = () => {
   ];
 
   const rows = [
-    { id: 'DB-01000', contractTitle: 'DB-01000', amount: '+₦5000', categorySkill: "Engineer", status: 'Draft', location: "Ibadan", bids: "20", dateCreated: "8th Feb, 2020", paymentMethod: "Escrow" },
-    { id: 'DB-01001', contractTitle: 'DB-01001', amount: '+₦10,000', categorySkill: "Developer", status: 'In Progress', location: "Lagos", bids: "12", dateCreated: "10th Mar, 2021", paymentMethod: "Upfront" },
-    { id: 'DB-01002', contractTitle: 'DB-01002', amount: '+₦8,000', categorySkill: "Designer", status: 'Expired', location: "Abuja", bids: "15", dateCreated: "20th Jan, 2023", paymentMethod: "Escrow" },
-    { id: 'DB-01003', contractTitle: 'DB-01003', amount: '+₦8,000', categorySkill: "Designer", status: 'In Review', location: "Abuja", bids: "15", dateCreated: "20th Jan, 2023", paymentMethod: "Escrow" },
-    { id: 'DB-01004', contractTitle: 'DB-01004', amount: '+₦8,000', categorySkill: "Designer", status: 'Completed', location: "Abuja", bids: "15", dateCreated: "20th Jan, 2023", paymentMethod: "Escrow" },
-    { id: 'DB-01005', contractTitle: 'DB-01005', amount: '+₦8,000', categorySkill: "Designer", status: 'Posted', location: "Abuja", bids: "15", dateCreated: "20th Jan, 2023", paymentMethod: "Escrow" },
+    { id: 'DB-01000', contractTitle: 'DB-01000', amount: '+₦5000',  status: 'In Progress', location: "Ibadan",  dateCreated: "8th Feb, 2020",proposedDueDate: "Escrow" },
+    { id: 'DB-01001', contractTitle: 'DB-01001', amount: '+₦10,000',  status: 'Closed', location: "Lagos",  dateCreated: "10th Mar, 2021", proposedDueDate: "Upfront" },
+    { id: 'DB-01002', contractTitle: 'DB-01002', amount: '+₦8,000',  status: 'Closed', location: "Abuja", dateCreated: "20th Jan, 2023", proposedDueDate: "Escrow" },
+    { id: 'DB-01003', contractTitle: 'DB-01003', amount: '+₦8,000',  status: 'In Progress', location: "Abuja", dateCreated: "20th Jan, 2023", proposedDueDate: "Escrow" },
+    { id: 'DB-01004', contractTitle: 'DB-01004', amount: '+₦8,000',  status: 'Opened', location: "Abuja",  dateCreated: "20th Jan, 2023", proposedDueDate: "Escrow" },
+    { id: 'DB-01005', contractTitle: 'DB-01005', amount: '+₦8,000',  status: 'In Progress', location: "Abuja",  dateCreated: "20th Jan, 2023", proposedDueDate: "Escrow" },
   ];
 
   const status = [
     { label: "All", value: "all" },
-    { label: "Draft", value: "draft" },
-    { label: "Posted", value: "posted" },
-    { label: "In Review", value: "inReviw" },
-    { label: "Completed", value: "completed" },
-    { label: "Expired", value: "expired" },
-    { label: "In Progress", value: "inProgress" },
+    { label: "Closed", value: "closed" },
+    { label: "Opended", value: "opened" },
   ];
 
   const paymentTerm = [
@@ -184,25 +138,7 @@ const Contracts = () => {
           <SelectInput label="Payment terms" value={department} options={paymentTerm} onChange={setDepartment} />
         </Box>
       </Box>
-
-      {rows.length === 0 ? (
-        <Box sx={{ textAlign: "center", mt: 10 }}>
-          <Image src="/image/Group 1000005612.png" alt="No Contracts" width={200} height={151.5} />
-          <Typography>You don’t have any contract yet.</Typography>
-          <Typography>
-            Your pending and active contracts will be available here when you start post hiring contractor.
-            <span
-              style={{ color: "#0718B9", textDecoration: "underline", cursor: "pointer" }}
-              onClick={() => router.push("/post-contract")}
-            >
-              {" Post a contract"}
-            </span>
-          </Typography>
-        </Box>
-      ) : (
         <ReusableTable columns={columns} rows={rows} />
-      )}
-
       <ReusableModal open={showDeleteModal} onClose={() => setShowDeleteModal(false)}>
       <Box
         sx={{
@@ -222,15 +158,15 @@ const Contracts = () => {
             flexDirection: "column",
             gap: "16px",
             bgcolor: "#fff",
-            textAlign: "center", 
-            alignItems: "center",
+            textAlign: "center", // ✅ Center all text
+            alignItems: "center", // ✅ Center children horizontally
           }}
         >
           <Typography fontWeight={600} fontSize={16}>
-            Delete contract
+            Delete Bid
           </Typography>
           <Typography fontSize={14}>
-            Are you sure you want to delete this contract?
+            Are you sure you want to delete this bid?
           </Typography>
           <Box display="flex" justifyContent="center" gap={2}>
             <CustomButton
@@ -258,4 +194,4 @@ const Contracts = () => {
   );
 };
 
-export default Contracts;
+export default Bids;

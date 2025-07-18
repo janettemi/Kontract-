@@ -27,12 +27,9 @@ const DotGrid = styled(Box)(({ theme }) => ({
 
 const Container = styled(Box)(({ theme }) => ({
   position: 'relative',
-  backgroundColor: '#fff',
-  boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
+  backgroundColor: '#F6F6F6',
   borderRadius: '16px',
-  padding: '40px 24px',
-  margin: '60px auto',
-
+  
   [theme.breakpoints.up('md')]: {
     maxWidth: '1440px',
     height: '500px',

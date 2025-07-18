@@ -5,26 +5,91 @@ import Image from "next/image";
 import { useState } from "react";
 import ReusableTable from "@/conponent/ReusableTable";
 
+import { IconButton } from "@mui/material";
+import { MoreHoriz, CheckCircle, Cancel, AccessTime } from "@mui/icons-material";
+
+const getStatusUI = (status: string) => {
+  const map = {
+    Successful: {
+      color: '#34C759',
+      bg: 'rgba(52, 199, 89, 0.1)',
+      icon: <CheckCircle sx={{ fontSize: 14, color: '#34C759' }} />,
+    },
+    Failed: {
+      color: '#FF3B30',
+      bg: 'rgba(255, 59, 48, 0.1)',
+      icon: <Cancel sx={{ fontSize: 14, color: '#FF3B30' }} />,
+    },
+    Pending: {
+      color: '#FF9500',
+      bg: 'rgba(255, 149, 0, 0.1)',
+      icon: <AccessTime sx={{ fontSize: 14, color: '#FF9500' }} />,
+    },
+  };
+
+  const { color, icon, bg } = map[status as keyof typeof map] || map['Pending'];
+
+  return (
+    <Box
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '4px',
+        borderRadius: '6px',
+        padding: '4px 8px 4px 4px',
+        backgroundColor: bg,
+        width: 'fit-content',
+      }}
+    >
+      {icon}
+      <Typography fontSize="12px" fontWeight={500} color={color}>
+        {status}
+      </Typography>
+    </Box>
+  );
+};
+
 const Dashboard = () => {
-    
+
 const columns = [
   { label: 'Transaction ID', key: 'transactionID' },
   { label: 'Description', key: 'description' },
-  { label: 'Amount', key: 'amount' },
+  { 
+    label: 'Amount', 
+    key: 'amount',
+    render: (val: string) => (
+      <Typography sx={{ color: val.startsWith('-') ? '#FF3B30' : '#34C759', fontWeight: 500 }}>
+        {val}
+      </Typography>
+    )
+  },
   { label: 'Date', key: 'date' },
-  { label: 'Status', key: 'status' },
+  {
+    label: 'Status',
+    key: 'status',
+    render: (val: string) => getStatusUI(val),
+  },
+  {
+    label: '',
+    key: 'actions',
+    render: () => (
+      <IconButton>
+        <MoreHoriz />
+      </IconButton>
+    ),
+  },
 ];
 
 const rows = [
-  { transactionID: 'DB-01000',
-     description: 'Contract promotion payment', amount: '+₦5000',date:"8th Feb, 2020",sstatus: 'Successful'},
+  { 
+    transactionID: 'DB-01000',
+    description: 'Contract promotion payment',
+    amount: '+₦5000',
+    date:"8th Feb, 2020",
+    status: 'Successful'
+  },
 ];
-// const 
-// rows = [
-//   { id: 'TXN001', amount: '+₦5000',  },
-//   { id: 'TXN002', amount: '-₦2000', status: 'Failed' },
-//   { id: 'TXN003', amount: '+₦1000', status: 'Pending' },
-// ];
+
 
 const [search, setSearch] = useState("");
   const steps = [
