@@ -17,7 +17,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
-const mainItems = [
+interface NavItem {
+  text: string;
+  icon: string;
+  href: string;
+}
+
+const mainItems: NavItem[] = [
   { text: 'Dashboard', icon: '/icons/graph.png', href: '/dashboard' },
   { text: 'Browse', icon: '/icons/search-normal.png', href: '/dashboard/browse' },
   { text: 'My Contract', icon: '/icons/note.png', href: '/dashboard/contracts' },
@@ -28,7 +34,7 @@ const mainItems = [
   { text: 'Transactions', icon: '/icons/receipt.png', href: '/dashboard/transactions-log' },
 ];
 
-const otherItems = [
+const otherItems: NavItem[] = [
   { text: 'Profile', icon: '/icons/profile-circle.png', href: '/dashboard/profile' },
   { text: 'Settings', icon: '/icons/setting-2.png', href: '/dashboard/settings' },
   { text: 'Support', icon: '/icons/headphone.png', href: '/dashboard/support' },
@@ -45,7 +51,7 @@ export default function Sidebar({
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const pathname = usePathname();
 
-  const renderNavItem = ({ text, icon, href }: { text: string; icon: string; href: string }) => {
+  const renderNavItem = ({ text, icon, href }: NavItem) => {
     const isActive = pathname === href;
 
     return (
@@ -56,24 +62,21 @@ export default function Sidebar({
         onClick={isMobile ? onToggleSidebar : undefined}
         sx={{
           position: 'relative',
-          width: 232,
+          width: '100%',
           height: 36,
           borderRadius: '8px',
-          px: '12px',
-          py: '8px',
-          gap: '8px',
+          px: 1.5,
+          py: 1,
+          gap: 1,
           mb: 0.5,
           bgcolor: isActive ? '#FAFAFA' : 'transparent',
           display: 'flex',
           alignItems: 'center',
           fontWeight: isActive ? 600 : 400,
           color: isActive ? '#556882' : '#001C44',
-          '&:hover': {
-            bgcolor: '#F5F5F5',
-          },
+          '&:hover': { bgcolor: '#F5F5F5' },
         }}
       >
-        {/* Active left border */}
         {isActive && (
           <Box
             sx={{
@@ -84,24 +87,16 @@ export default function Sidebar({
               width: 4,
               height: 20,
               bgcolor: '#0718B9',
-              borderTopRightRadius: '4px',
-              borderBottomRightRadius: '4px',
+              borderTopRightRadius: 1,
+              borderBottomRightRadius: 1,
             }}
           />
         )}
 
-        {/* Icon */}
         <ListItemIcon sx={{ minWidth: 24, color: isActive ? '#0718B9' : '#556882' }}>
-          <Image
-            src={icon}
-            alt={text + ' icon'}
-            width={20}
-            height={20}
-            style={{ transition: 'all 0.2s ease-in-out' }}
-          />
+          <Image src={icon} alt={`${text} icon`} width={20} height={20} />
         </ListItemIcon>
 
-        {/* Text */}
         <ListItemText
           primary={text}
           primaryTypographyProps={{
@@ -120,20 +115,18 @@ export default function Sidebar({
     <Box
       sx={{
         width: { xs: '100%', md: 272 },
-        maxWidth: 272,
-        height: { xs: 'auto', md: 1024 },
+        height: '100%',
         borderRight: { xs: 'none', md: '1px solid #E0E0E0' },
         overflowY: 'auto',
+        bgcolor: '#fff',
       }}
     >
       {/* Logo */}
       <Box
         sx={{
-          width: '100%',
-          height: "70px",
+          height: 85,
           borderBottom: '1px solid #E0E0E0',
-          p: '8.01px 24.03px',
-          borderRadius: '4px',
+          px: 3,
           display: 'flex',
           alignItems: 'center',
         }}
@@ -142,17 +135,7 @@ export default function Sidebar({
       </Box>
 
       {/* Nav List */}
-      <Box
-        sx={{
-          height: { xs: 'auto', sm: 848 },
-          gap: '14px',
-          px: '20px',
-          pt: '20px',
-          pb: '16px',
-          display: 'flex',
-          flexDirection: 'column',
-        }}
-      >
+      <Box sx={{ px: 3, pt: 3 }}>
         <Typography variant="subtitle2" color="#9AA6AC" fontWeight={500} mb={1}>
           MAIN
         </Typography>
@@ -167,21 +150,15 @@ export default function Sidebar({
       </Box>
 
       {/* Footer Section */}
-      <Box bgcolor="#F1F5FF" borderRadius={2} p={2} textAlign="center" mt={4} fontSize={14}>
-        <Typography fontWeight={500} color="#2B4263">
+      <Box bgcolor="#F1F5FF" borderRadius={2} p={2} textAlign="center" mt={4} mx={2}>
+        <Typography fontWeight={500} color="#2B4263" fontSize={14}>
           Bids Remaining: <strong>5</strong>
         </Typography>
         <MuiLink
           component={Link}
           href="/dashboard/plans"
           underline="none"
-          sx={{
-            mt: 1,
-            display: 'inline-block',
-            color: '#0718B9',
-            fontWeight: 500,
-            fontSize: 14,
-          }}
+          sx={{ mt: 1, display: 'inline-block', color: '#0718B9', fontWeight: 500, fontSize: 14 }}
         >
           View Plan
         </MuiLink>

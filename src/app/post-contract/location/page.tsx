@@ -10,7 +10,7 @@ const Location = () => {
   const [country, setCountry] = useState('');
   const [state, setState] = useState('');
   const [lga, setLga] = useState('');
-    const [loading, setLoading] = useState(false); // 👈 Loading state
+  const [loading, setLoading] = useState(false); //  Loading state
 
     const handleNextClick = () => {
     setLoading(true);

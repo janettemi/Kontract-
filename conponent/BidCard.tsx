@@ -16,7 +16,7 @@ type BidCardProps = {
 
 const BidCard = ({ avatarUrl,
   name,
-  rating,
+  //rating,
   amount,
   duration,
   onViewProfile,

@@ -1,21 +1,24 @@
-
-//import './globals.css';
+// app/layout.tsx
 import LayoutClient from '@/conponent/LayoutClient';
 
 export const metadata = {
   title: 'Kontract',
-  description: 'Responsive MUI Navbar',
+  description: 'Kontract app',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/public/favicon.ico" />
+      </head>
       <body style={{ paddingTop: '88px' }}>
         <LayoutClient>{children}</LayoutClient>
       </body>
     </html>
   );
 }
+
 
 
 

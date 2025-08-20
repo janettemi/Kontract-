@@ -47,6 +47,10 @@ export default function DashboardNavbar({ onToggleSidebar }: { onToggleSidebar: 
 
   const handlePostOptionClick = (type: 'contract' | 'service') => {
     router.push("/post-contract")
+    //router.push("/post-service")
+    handleClose();
+  };
+  const handlePostsOptionClick = (type: 'contract' | 'service') => {
     router.push("/post-service")
     handleClose();
   };
@@ -85,7 +89,6 @@ export default function DashboardNavbar({ onToggleSidebar }: { onToggleSidebar: 
               <MenuIcon />
             </IconButton>
           )}
-          
           <Typography
             sx={{
               fontFamily: '"BR Firma", sans-serif',
@@ -180,7 +183,7 @@ export default function DashboardNavbar({ onToggleSidebar }: { onToggleSidebar: 
             <MenuItem onClick={() => handlePostOptionClick('contract')} 
             
             >Post a contract</MenuItem>
-            <MenuItem onClick={() => handlePostOptionClick('service')}>Post a service</MenuItem>
+            <MenuItem onClick={() => handlePostsOptionClick('service')}>Post a service</MenuItem>
           </Menu>
           </Box>
         </Box>

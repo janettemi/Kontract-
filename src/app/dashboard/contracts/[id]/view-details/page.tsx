@@ -205,7 +205,8 @@ const ViewDetail = () => {
             <Typography sx={{ color: "#001C44", fontSize: "20px", fontWeight: "600" }}>Bids</Typography>
             <CustomButton bgColor="#0718B9" textColor="#fff"
             onClick={() => setShowAllBids(true)}
-            >View all bids</CustomButton>
+            >View all bids
+            </CustomButton>
         </Box>
         
         {bids.map((bid, index) => (
