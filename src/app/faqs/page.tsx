@@ -1,5 +1,4 @@
 "use client";
-
 import {
   Box,
   Typography,
@@ -117,6 +116,7 @@ export default function FAQPage() {
               mb: 1,
               fontWeight: 400,
               fontSize: "18px",
+              color:"#FFFFFF"
             }}
           >
             Kontract Support

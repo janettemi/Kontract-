@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import ReusableTable from "@/conponent/ReusableTable";
 import SearchInput from "@/conponent/SearchInput";
 import SelectInput from "@/conponent/SelectInput";
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+//import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import {
   Box,
   IconButton,
@@ -12,7 +12,6 @@ import {
   MenuItem,
   ListItemText,
   Typography,
-  Tooltip,
 } from "@mui/material";
 import { MoreHoriz } from "@mui/icons-material";
 import Image from "next/image";
@@ -158,8 +157,8 @@ const Bids = () => {
             flexDirection: "column",
             gap: "16px",
             bgcolor: "#fff",
-            textAlign: "center", // ✅ Center all text
-            alignItems: "center", // ✅ Center children horizontally
+            textAlign: "center", //  Center all text
+            alignItems: "center", // Center children horizontally
           }}
         >
           <Typography fontWeight={600} fontSize={16}>

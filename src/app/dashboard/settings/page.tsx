@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import ProfileInformation from './ProfileInformation';
 import PasswordsSecurity from './PasswordsSecurity';
 import BillingsPayments from './BillingsPayments';
+import Notification from './Notification';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -75,7 +76,7 @@ export default function Settings() {
         <PasswordsSecurity />
       </TabPanel>
       <TabPanel value={value} index={3}>
-        Item Four
+        <Notification />
       </TabPanel>
     </Box>
   );

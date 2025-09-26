@@ -6,15 +6,11 @@ import { Box, Divider, Typography } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import ContractVisibilityModal from "@/conponent/ContractVisibilityModal";
-
 
 const ServiceDetails = () => {
     const router = useRouter()
      const [open, setOpen] = useState(false);
      const [promote, setPromote] = useState(false)
-     const [showVisibilityModal, setShowVisibilityModal] = useState(false);
 
      const handlePostWithoutPromotion = () => {
   // Example: simulate saving the contract with "Posted" status
@@ -702,7 +698,7 @@ const ServiceDetails = () => {
               color: '#001C44',
             }}
           >
-           Your Service Is Now Live!🎉 
+           Your Service Is Now Live!
           </Typography>
           <Typography
             sx={{

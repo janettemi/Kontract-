@@ -19,8 +19,8 @@ const SubmitDispute = () => {
   const contractId = params?.id;
   const router = useRouter();
 
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  //const theme = useTheme();
+//  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const [title, setTitle] = useState('');
   const [contractorName, setContractorName] = useState('');

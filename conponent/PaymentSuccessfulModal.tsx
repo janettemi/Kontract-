@@ -1,7 +1,7 @@
 'use client';
 
 import { Box, Typography } from '@mui/material';
-import ReusableModal from '@/components/ui/ReusableModal';
+//import ReusableModal from '@/components/ui/ReusableModal';
 import CustomButton from '@/conponent/CustomButton';
 import Image from 'next/image';
 import React from 'react';
@@ -16,15 +16,15 @@ type Props = {
 };
 
 const PaymentSuccessfulModal = ({
-  open,
-  onClose,
+  // open,
+  // onClose,
   amount,
   transactionId,
   date,
   onViewReceipt,
 }: Props) => {
   return (
-    <ReusableModal open={open} onClose={onClose}>
+   
       <Box
         sx={{
           width: 500,
@@ -122,7 +122,6 @@ const PaymentSuccessfulModal = ({
           View Receipt
         </CustomButton>
       </Box>
-    </ReusableModal>
   );
 };
 
