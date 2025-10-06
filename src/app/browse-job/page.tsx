@@ -130,7 +130,7 @@ const BrowseJobs = () => {
         {/* Filters */}
         <Box
           sx={{
-            display: "flex",
+            display: "flex", 
             justifyContent: "space-between",
             flexWrap: "wrap",
             gap: 2,

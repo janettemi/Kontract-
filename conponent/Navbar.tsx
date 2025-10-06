@@ -38,6 +38,8 @@ const Navbar = () => {
   };
 
   const linkStyles = React.useCallback(
+
+    
   (href: string) => {
     let isActive = false;
 

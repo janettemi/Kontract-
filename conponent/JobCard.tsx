@@ -8,7 +8,7 @@ import {
   useTheme,
   useMediaQuery,
 } from "@mui/material";
-import FavoriteIcon from '@mui/icons-material/Favorite';
+//import FavoriteIcon from '@mui/icons-material/Favorite';
 import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 import { Star, Verified } from "@mui/icons-material";
 import Image from "next/image";
