@@ -2,24 +2,19 @@
 //import { ChevronLeft, ChevronRight } from 'lucide-react';
 //import { useRef } from 'react';
 import { Box, Typography } from '@mui/material';
-//import BreadcrumbHeader from '@/conponent/BreadcrumbHeader';
 import Image from 'next/image';
 import { CalendarHeartIcon, LocationEditIcon, StarIcon } from 'lucide-react';
 import CustomButton from '@/conponent/CustomButton';
 import { useState } from 'react';
 import EditIcon from "@mui/icons-material/Edit";
-export interface ProfileProps {
-  contractorId: string;
-  onBack: () => void;
-}
 
-const Profile = ({ contractorId, onBack }: ProfileProps) => {
+const ProfilePage = () => {
   const [showMore, setShowMore] = useState(false);
 
   const contractorData = {
     name: 'Abdulhamid Ayo',
     location: 'Oyo, Ibadan. NG',
-    joinDate: 'Apr 15, 2025',
+    joinDate: 'Apr 15, 2023',
     avatarUrl: '/image/image (3).png',
     rating: 4,
     about:
@@ -69,7 +64,6 @@ const Profile = ({ contractorId, onBack }: ProfileProps) => {
 
   return (
     <Box display="flex" flexDirection="column" gap={3}>
-
       {/* Profile Info */}
       <Box
         sx={{
@@ -247,14 +241,14 @@ const Profile = ({ contractorId, onBack }: ProfileProps) => {
                 overflow: 'hidden',
             }}
             >
-            <Image
+             <Image
                 src={work.image}
                 alt={work.title}
                 width={250}
                 height={151}
                 style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
             />
-            <Box p={1}>
+              <Box p={1}>
                 <Typography fontWeight={600}>{work.title}</Typography>
                 <Typography fontSize="12px" fontWeight={500} display="flex" alignItems="center" gap={1}>
                 <LocationEditIcon size={16} />
@@ -278,4 +272,4 @@ const Profile = ({ contractorId, onBack }: ProfileProps) => {
   );
 };
 
-export default Profile;
+export default ProfilePage;
