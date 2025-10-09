@@ -95,6 +95,18 @@ useEffect(() => {
     bids: 15,
     
   },
+  {
+    postedTime: "Posted yesterday",
+    title: "Build Admin Dashboard",
+    jobTitle: "Frontend Development",
+    description: "Build dashboard using Next.js & Tailwind.",
+    priceRange: "$800 - $1200",
+    rating: 4.5,
+    location: "PH, Nigeria",
+    dueDate: "June 25, 2025",
+    bids: 15,
+    
+  },
 ];
 
 
@@ -110,12 +122,9 @@ useEffect(() => {
           width: '100%',
           mx: 'auto',
           minHeight: '100vh',
-          gap: 4,
-          flexDirection: {
-            xs: 'column',
-            md: 'row',
-          },
-          px: { xs: 2, md: 0 },
+          gap: { xs: 2, md: 4 },
+          flexDirection: { xs: 'column', md: 'row' },
+          px: { xs: 1, sm: 2, md: 4 },
           py: { xs: 4, md: 0 },
         }}
         >
@@ -124,9 +133,10 @@ useEffect(() => {
           sx={{
             position: 'relative',
             width: { xs: '100%', md: 380 },
-            height: { xs: 300, md: 350 },
-            mb: { xs: 6, md: 0 },
-            mx: { xs: 'auto', md: 'initial' },
+            height: { xs: 0, md: 350 },
+            mb: { xs: 0, md: 0 },
+            mx: { xs: 'auto', md:
+               'initial' },
             display: { xs: 'none', md: 'block' },
           }}
         >
@@ -168,7 +178,7 @@ useEffect(() => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            mb: { xs: 6, md: 0 },
+            mb: { xs: 4, md: 0 },
           }}
         >
           <Box
@@ -178,8 +188,8 @@ useEffect(() => {
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: '20px',
-              px: { xs: 2, md: 0 },
+              gap: { xs: 2, md: '20px' },
+              px: { xs: 1, sm: 2, md: 0 },
             }}
           >
             <Box
@@ -255,9 +265,9 @@ useEffect(() => {
               Kontract is a secure marketplace connecting businesses with skilled contractors
               for seamless project execution.
             </Typography>
-
-             <Box sx={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
-              <CustomButton rounded bgColor="#0718B9" textColor="#fff">
+             <Box sx={{ display: 'flex', gap: { xs: 1, sm: '12px' }, justifyContent: 'center', flexWrap: 'wrap', width: '100%' }}>
+              <CustomButton rounded textColor="#0718B9"
+                borderColor="#0718B9"  sx={{ width: { xs: '100%', sm: 'auto' } }}>
                 Find Talent
               </CustomButton>
               <CustomButton
@@ -265,6 +275,7 @@ useEffect(() => {
                 variant="outlined"
                 textColor="#0718B9"
                 borderColor="#0718B9"
+                sx={{ width: { xs: '100%', sm: 'auto' } }}
                  onClick={() => router.push('/browse-job')}
               >
                 Browse Jobs
@@ -273,13 +284,13 @@ useEffect(() => {
           </Box>
         </Box>
 
-        {/* Right Card Stack */}
+        {/* Right Card Stack (desktop only) */}
         <Box
           sx={{
             position: 'relative',
             width: { xs: '100%', md: 380 },
-            height: { xs: 300, md: 350 },
-            mb: { xs: 6, md: 0 },
+            height: { xs: 0, md: 350 },
+            mb: { xs: 0, md: 0 },
             mx: { xs: 'auto', md: 'initial' },
             display: { xs: 'none', md: 'block' },
           }}
@@ -316,57 +327,66 @@ useEffect(() => {
          </BackgroundGrid>
 
       {/* Contracts and Services Section */}
-      <Box sx={{ mt: '20px', px: { xs: 2, md: 4 }, py: 5, display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <Box
+        sx={{
+          mt: { xs: 2, md: '20px' },
+          px: { xs: 1, sm: 2, md: 4 },
+          py: { xs: 3, md: 5 },
+          display: 'flex',
+          flexDirection: 'column',
+          gap: { xs: 2, md: '16px' },
+        }}
+      >
         {/* Header */}
-       <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              flexDirection: { xs: 'column', sm: 'column', md: 'row' },
-              gap: { xs: '24px', sm: '24px', md: '16px' },
-              textAlign: { xs: 'center', md: 'left' },
-              width: '100%',
-            }}
-          >
-            <Box>
-              <Typography
-                sx={{
-                  fontWeight: 600,
-                  fontSize: { xs: '28px', sm: '32px', md: '40px' },
-                  lineHeight: { xs: '36px', sm: '42px', md: '50px' },
-                  color: '#001C44',
-                }}
-              >
-                Contracts and Services
-              </Typography>
-              <Typography
-                sx={{
-                  fontWeight: 400,
-                  fontSize: { xs: '14px', sm: '15px', md: '16px' },
-                  lineHeight: { xs: '22px', sm: '24px', md: '25px' },
-                  color: '#2B4263',
-                }}
-              >
-                Discover the latest opportunities
-              </Typography>
-            </Box>
-
-            <CustomButton
-              variant="outlined"
-              textColor="#0718B9"
-              borderColor="#0718B9"
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: { xs: 'stretch', md: 'center' },
+            flexDirection: { xs: 'column', sm: 'column', md: 'row' },
+            gap: { xs: 2, sm: 2, md: '16px' },
+            textAlign: { xs: 'center', md: 'left' },
+            width: '100%',
+          }}
+        >
+          <Box>
+            <Typography
               sx={{
-                fontSize: { xs: '12px', sm: '13px', md: '14px' }, // smaller font on mobile
-                textTransform: 'none', // prevent uppercase
-                width: { xs: '100%', sm: 'auto' },
-                alignSelf: { xs: 'center', md: 'flex-start' },
-                justifyContent: 'center',
+                fontWeight: 600,
+                fontSize: { xs: '28px', sm: '32px', md: '40px' },
+                lineHeight: { xs: '36px', sm: '42px', md: '50px' },
+                color: '#001C44',
               }}
             >
-              View all
-            </CustomButton>
+              Contracts and Services
+            </Typography>
+            <Typography
+              sx={{
+                fontWeight: 400,
+                fontSize: { xs: '14px', sm: '15px', md: '16px' },
+                lineHeight: { xs: '22px', sm: '24px', md: '25px' },
+                color: '#2B4263',
+              }}
+            >
+              Discover the latest opportunities
+            </Typography>
           </Box>
+
+          <CustomButton
+            variant="outlined"
+            textColor="#0718B9"
+            borderColor="#0718B9"
+            sx={{
+              fontSize: { xs: '12px', sm: '13px', md: '14px' },
+              textTransform: 'none',
+              width: { xs: '100%', sm: 'auto' },
+              alignSelf: { xs: 'center', md: 'flex-start' },
+              justifyContent: 'center',
+            }}
+          >
+            View all
+          </CustomButton>
+        </Box>
 
         {/* Scrollable Job Cards */}
         <Box sx={{ position: 'relative' }}>
@@ -376,10 +396,11 @@ useEffect(() => {
               sx={{
                 overflowX: 'auto',
                 display: 'flex',
-                gap: 2,
+                gap: { xs: 1, sm: 2 },
                 scrollBehavior: 'smooth',
                 "&::-webkit-scrollbar": { display: 'none' },
                 pb: 2,
+                width: '100%',
               }}
             >
               {jobs.map((job, index) => (
@@ -388,10 +409,12 @@ useEffect(() => {
                   sx={{
                     flexShrink: 0,
                     width: {
-                      xs: '100%',
+                      xs: '90vw',
                       sm: 'calc(100% / 1.1)',
                       md: 'calc(100% / 2.5)',
+                      lg: 340,
                     },
+                    maxWidth: 400,
                   }}
                 >
                   <JobCard {...job} />
@@ -399,79 +422,85 @@ useEffect(() => {
               ))}
             </Box>
           </Box>
-         {isLargeScreen && (
+          {isLargeScreen && (
             <Box
               sx={{
                 display: 'flex',
                 justifyContent: 'flex-end',
-                gap: 8,
+                gap: 2,
                 mt: 1,
               }}
             >
               <IconButton
-              onClick={() => scroll('left')}
-              disabled={!canScrollLeft}
-              sx={{
-                border: `2px solid ${canScrollLeft ? '#0718B9' : '#E5E5E5'}`,
-                color: canScrollLeft ? '#0718B9' : '#E5E5E5',
-                width: 40,
-                height: 40,
-                borderRadius: '50%',
-                backgroundColor: 'transparent',
-                cursor: canScrollLeft ? 'pointer' : 'default',
-                '&:hover': {
-                  backgroundColor: canScrollLeft ? 'rgba(7, 24, 185, 0.05)' : 'transparent',
-                },
-              }}
-            >
-              <ChevronLeftIcon />
-            </IconButton>
+                onClick={() => scroll('left')}
+                disabled={!canScrollLeft}
+                sx={{
+                  border: `2px solid ${canScrollLeft ? '#0718B9' : '#E5E5E5'}`,
+                  color: canScrollLeft ? '#0718B9' : '#E5E5E5',
+                  width: 40,
+                  height: 40,
+                  borderRadius: '50%',
+                  backgroundColor: 'transparent',
+                  cursor: canScrollLeft ? 'pointer' : 'default',
+                  '&:hover': {
+                    backgroundColor: canScrollLeft ? 'rgba(7, 24, 185, 0.05)' : 'transparent',
+                  },
+                }}
+              >
+                <ChevronLeftIcon />
+              </IconButton>
 
-            <IconButton
-              onClick={() => scroll('right')}
-              disabled={!canScrollRight}
-              sx={{
-                border: `2px solid ${canScrollRight ? '#0718B9' : '#E5E5E5'}`,
-                color: canScrollRight ? '#0718B9' : '#E5E5E5',
-                width: 40,
-                height: 40,
-                borderRadius: '50%',
-                backgroundColor: 'transparent',
-                cursor: canScrollRight ? 'pointer' : 'default',
-                '&:hover': {
-                  backgroundColor: canScrollRight ? 'rgba(7, 24, 185, 0.05)' : 'transparent',
-                },
-              }}
-            >
-              <ChevronRightIcon />
-            </IconButton>
-          </Box>
+              <IconButton
+                onClick={() => scroll('right')}
+                disabled={!canScrollRight}
+                sx={{
+                  border: `2px solid ${canScrollRight ? '#0718B9' : '#E5E5E5'}`,
+                  color: canScrollRight ? '#0718B9' : '#E5E5E5',
+                  width: 40,
+                  height: 40,
+                  borderRadius: '50%',
+                  backgroundColor: 'transparent',
+                  cursor: canScrollRight ? 'pointer' : 'default',
+                  '&:hover': {
+                    backgroundColor: canScrollRight ? 'rgba(7, 24, 185, 0.05)' : 'transparent',
+                  },
+                }}
+              >
+                <ChevronRightIcon />
+              </IconButton>
+            </Box>
           )}
-          </Box>
-         <Box sx={{ minHeight: { xs: 'auto', md: '700px' }, mx: 'auto', py: { xs: 4, md: 8 } }}>
+        </Box>
         <Box
           sx={{
-            display: 'flex',
-            flexDirection: { xs: 'column', md: 'row' },
-            justifyContent: 'space-between',
-            alignItems: 'flex-start',
-            gap: { xs: 4, md: '40px' },
-            px: { xs: 2, md: 6 },
+            minHeight: { xs: 'auto', md: '700px' },
+            mx: 'auto',
+            py: { xs: 2, md: 8 },
           }}
         >
-          {/* Text and StepBadge */}
           <Box
             sx={{
-              flex: 1,
-              maxWidth: { md: '50%' },
               display: 'flex',
-              flexDirection: 'column',
+              flexDirection: { xs: 'column', md: 'row' },
               justifyContent: 'space-between',
-              height: '100%',
-              gap: 4,
+              alignItems: 'flex-start',
+              gap: { xs: 2, md: '40px' },
+              px: { xs: 1, sm: 2, md: 6 },
             }}
           >
-            <Box>
+            {/* Text and StepBadge */}
+            <Box
+              sx={{
+                flex: 1,
+                maxWidth: { md: '50%' },
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                height: '100%',
+                gap: { xs: 2, md: 4 },
+              }}
+            >
+              <Box>
                 <Typography
                   sx={{
                     color: '#001C44',
@@ -504,7 +533,7 @@ useEffect(() => {
               />
             </Box>
 
-            <CustomButton style={{ width: 150 }} bgColor="#0718B9" textColor="#fff">
+            <CustomButton style={{ width: 150, marginTop: 16 }} bgColor="#0718B9" textColor="#fff">
               Sign up now
             </CustomButton>
           </Box>
@@ -512,11 +541,12 @@ useEffect(() => {
           {/* Image */}
           <Box
             sx={{
-              width: { xs: '100%', sm: 400, md: 470 },
-              height: { xs: 300, sm: 400, md: 648 },
+              width: { xs: '100%', sm: 320, md: 470 },
+              height: { xs: 220, sm: 320, md: 648 },
               borderRadius: '10px',
               overflow: 'hidden',
               flexShrink: 0,
+              mt: { xs: 3, md: 0 },
             }}
           >
             <Image
@@ -530,49 +560,61 @@ useEffect(() => {
         </Box>
       </Box>
      </Box>
-      <Box sx={{ bgcolor: '#FAFAFA', display:"flex", flexDirection:"column",gap:5, minHeight: '100vh', px: { xs: 2, sm: 4 }, py: { xs: 6, md: 10 } }}>
-          <Box
+      <Box
+        sx={{
+          bgcolor: '#FAFAFA',
+          display: "flex",
+          flexDirection: "column",
+          gap: { xs: 3, md: 5 },
+          minHeight: '100vh',
+          px: { xs: 1, sm: 2, md: 4 },
+          py: { xs: 4, md: 10 },
+        }}
+      >
+        <Box
+          sx={{
+            maxWidth: 600,
+            margin: '0 auto',
+            textAlign: 'center',
+          }}
+        >
+          <Typography
+            variant="h2"
             sx={{
-              maxWidth: 600,
-              margin: '0 auto',
-              textAlign: 'center',
+              fontWeight: 600,
+              fontSize: { xs: '28px', sm: '36px', md: '42px' },
+              lineHeight: { xs: '38px', sm: '46px', md: '55px' },
+              color: '#001C44',
+              mb: 3,
             }}
           >
-            <Typography
-              variant="h2"
-              sx={{
-                fontWeight: 600,
-                fontSize: { xs: '28px', sm: '36px', md: '42px' },
-                lineHeight: { xs: '38px', sm: '46px', md: '55px' },
-                color: '#001C44',
-                mb: 3,
-              }}
-            >
-              Why Choose Us?
-            </Typography>
-            <Typography
-              sx={{
-                fontWeight: 400,
-                fontSize: { xs: '16px', sm: '18px', md: '20px' },
-                lineHeight: { xs: '24px', sm: '28px', md: '30px' },
-                color: '#2B4263',
-                maxWidth: { xs: 500, md: 600 }, // narrower on md to force line break
-                mx: 'auto',
-                whiteSpace: 'normal',
-                wordBreak: 'break-word',
-              }}
-            >
-              Whether you're hiring or getting hired, Kontract connects the right people with the right opportunities—quickly and seamlessly.
-            </Typography>
-          </Box>
-          <Box>
-            <InfoCard />
-          </Box>
+            Why Choose Us?
+          </Typography>
+          <Typography
+            sx={{
+              fontWeight: 400,
+              fontSize: { xs: '16px', sm: '18px', md: '20px' },
+              lineHeight: { xs: '24px', sm: '28px', md: '30px' },
+              color: '#2B4263',
+              maxWidth: { xs: 500, md: 600 },
+              mx: 'auto',
+              whiteSpace: 'normal',
+              wordBreak: 'break-word',
+            }}
+          >
+            Whether you're hiring or getting hired, Kontract connects the right people with the right opportunities—quickly and seamlessly.
+          </Typography>
         </Box>
         <Box>
-          <SatisfactionBox />
+          <InfoCard />
         </Box>
-          <BuildSection />
+      </Box>
+      <Box>
+        <SatisfactionBox />
+      </Box>
+      <Box sx={{ px: { xs: 1, sm: 2, md: 4 } }}>
+        <BuildSection />
+      </Box>
     </>
   );
 }

@@ -17,7 +17,7 @@ export default function SatisfactionBox() {
     const labelStyle: CSSProperties = {
       fontFamily: "BR Firma, sans-serif",
       fontWeight: 400,
-      fontSize: 16,
+      fontSize: "clamp(13px, 3vw, 16px)",
       lineHeight: "22.4px",
       letterSpacing: "-0.32%",
       color: "#fff",
@@ -26,6 +26,8 @@ export default function SatisfactionBox() {
       justifyContent: "center",
       marginBottom: 8,
       userSelect: "none",
+      textAlign: "center",
+      flexWrap: "wrap",
     };
     return (
       <div style={labelStyle}>
@@ -39,7 +41,7 @@ export default function SatisfactionBox() {
   const numberStyle: CSSProperties = {
     fontFamily: "BR Firma, sans-serif",
     fontWeight: 400,
-    fontSize: "clamp(40px, 10vw, 100px)", // scales between 40px and 100px based on viewport width
+    fontSize: "clamp(28px, 10vw, 100px)", // scales between 28px and 100px based on viewport width
     lineHeight: "1",
     letterSpacing: "-0.64%",
     color: "#fff",
@@ -56,15 +58,15 @@ export default function SatisfactionBox() {
         backgroundColor: "#000917",
         width: "100%",
         maxWidth: 1440,
-        minHeight: 299,
+        minHeight: 200,
         display: "flex",
-        flexWrap: "wrap",           // wrap on smaller screens
+        flexWrap: "wrap",
         justifyContent: "space-around",
         alignItems: "center",
         boxSizing: "border-box",
-        padding: "20px 40px",
-        margin: "0 auto",           // center horizontally
-        gap: 20,                    // spacing between items when wrapped
+        padding: "16px 8px",
+        margin: "0 auto",
+        gap: 16,
       }}
     >
       {[
@@ -77,9 +79,11 @@ export default function SatisfactionBox() {
           key={label}
           style={{
             textAlign: "center",
-            flex: "1 1 200px", // grow, shrink, basis for responsiveness
-            minWidth: 200,
+            flex: "1 1 120px", // grow, shrink, basis for responsiveness
+            minWidth: 120,
             maxWidth: 320,
+            margin: "0 auto",
+            padding: "8px 0",
           }}
         >
           <LabelWithTriangle text={label} />

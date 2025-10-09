@@ -59,8 +59,8 @@ const JobCard: React.FC<JobCardProps> = ({
     <Box
       sx={{
         width: "100%",
-        maxWidth: 450,
-        minHeight: 365,
+        maxWidth: { xs: "100%", sm: 400, md: 450 },
+        minHeight: { xs: 280, sm: 340, md: 365 },
         border: "1px solid #E0E0E0",
         borderRadius: "10px",
         backgroundColor: "#F6F6F6",
@@ -68,6 +68,7 @@ const JobCard: React.FC<JobCardProps> = ({
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
+        boxSizing: "border-box",
       }}
     >
       {/* Posted Time */}
@@ -75,7 +76,13 @@ const JobCard: React.FC<JobCardProps> = ({
 
       {/* Title & Icons */}
       <Box
-        sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          flexWrap: "wrap",
+          gap: { xs: 1, sm: 0 },
+        }}
       >
         <Box sx={{ flexGrow: 1, minWidth: "60%" }}>
           <Typography
@@ -86,6 +93,7 @@ const JobCard: React.FC<JobCardProps> = ({
               mt: 1,
               color: "#0718B9",
               fontSize: { xs: "16px", sm: "18px", md: "20px" },
+              wordBreak: "break-word",
             }}
           >
             {title}
@@ -118,7 +126,9 @@ const JobCard: React.FC<JobCardProps> = ({
       </Box>
 
       {/* Job Title */}
-      <Typography sx={{ fontSize: 12, color: "#888", mt: 1 }}>{jobTitle}</Typography>
+      <Typography sx={{ fontSize: 12, color: "#888", mt: 1, wordBreak: "break-word" }}>
+        {jobTitle}
+      </Typography>
 
       {/* Description */}
       <Typography
@@ -130,6 +140,7 @@ const JobCard: React.FC<JobCardProps> = ({
           fontSize: "14px",
           lineHeight: "20px",
           color: "#444",
+          wordBreak: "break-word",
         }}
       >
         {seeMore || description.length <= 100
@@ -153,10 +164,10 @@ const JobCard: React.FC<JobCardProps> = ({
           display: "flex",
           justifyContent: "space-between",
           flexWrap: "wrap",
-          gap: 2,
+          gap: { xs: 1, sm: 2 },
         }}
       >
-        <Box>
+        <Box sx={{ minWidth: 120 }}>
           <Typography variant="body2" sx={{ fontSize: 14, color: "#444" }}>
             Est. Budget
           </Typography>
@@ -164,7 +175,7 @@ const JobCard: React.FC<JobCardProps> = ({
             {priceRange}
           </Typography>
         </Box>
-        <Box>
+        <Box sx={{ minWidth: 120 }}>
           <Typography variant="body2" sx={{ fontSize: 14, color: "#444" }}>
             Due Date
           </Typography>
@@ -179,7 +190,7 @@ const JobCard: React.FC<JobCardProps> = ({
           display: "flex",
           justifyContent: "space-between",
           flexWrap: "wrap",
-          gap: 2,
+          gap: { xs: 1, sm: 2 },
         }}
       >
         {location && (
@@ -190,7 +201,9 @@ const JobCard: React.FC<JobCardProps> = ({
               height={20.88}
               alt="location icon"
             />
-            <Typography variant="body2">{location}</Typography>
+            <Typography variant="body2" sx={{ fontSize: 13 }}>
+              {location}
+            </Typography>
           </Box>
         )}
 
@@ -217,12 +230,12 @@ const JobCard: React.FC<JobCardProps> = ({
           display: "flex",
           justifyContent: "space-between",
           flexWrap: "wrap",
-          gap: 2,
+          gap: { xs: 1, sm: 2 },
         }}
       >
         {bids !== undefined && (
           <Box>
-            <Typography variant="body2">
+            <Typography variant="body2" sx={{ fontSize: 13 }}>
               <strong>Bids:</strong>{" "}
               <span style={{ color: "#0718B9" }}>{bids}</span>
             </Typography>
@@ -242,6 +255,7 @@ const JobCard: React.FC<JobCardProps> = ({
               padding: "4px 12px",
               height: "28px",
               minWidth: "auto",
+              whiteSpace: "nowrap",
             }}
           >
             Promoted
@@ -263,6 +277,7 @@ const JobCard: React.FC<JobCardProps> = ({
               borderRadius: "8px",
               textTransform: "none",
               fontSize: "14px",
+              py: 1,
             }}
           >
             {buttonText}

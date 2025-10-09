@@ -157,19 +157,36 @@ const Pricing = () => {
 
   return (
     <>
-      <BackgroundGrid >
-        <Box sx={{ maxWidth: 800,  mx: "auto", textAlign: "center", mb: 4  ,mt:10}}>
+      <BackgroundGrid>
+        <Box
+          sx={{
+            maxWidth: 800,
+            mx: "auto",
+            textAlign: "center",
+            mb: { xs: 2, md: 4 },
+            mt: { xs: 4, md: 10 },
+            px: { xs: 2, md: 0 },
+          }}
+        >
           <Typography
             sx={{
               fontWeight: 600,
-              fontSize: { xs: "36px", md: "70px" },
-              lineHeight: { xs: "52px", md: "105px" },
+              fontSize: { xs: "28px", sm: "36px", md: "70px" },
+              lineHeight: { xs: "38px", sm: "52px", md: "105px" },
               letterSpacing: "-0.64px",
             }}
           >
             Choose the plan for you
           </Typography>
-          <Typography variant="body1" color="text.secondary" marginTop="6px">
+          <Typography
+            variant="body1"
+            color="text.secondary"
+            marginTop="6px"
+            sx={{
+              fontSize: { xs: "14px", sm: "16px" },
+              lineHeight: { xs: "22px", sm: "24px" },
+            }}
+          >
             Let nothing in your way as you scale your freelance enterprise.
             <br />
             Get started with a free plan or go pro today.
@@ -178,7 +195,7 @@ const Pricing = () => {
 
         <Box
           sx={{
-            width: "214px",
+            width: { xs: "80%", sm: "214px" },
             height: "48px",
             border: "1px solid #0718B9",
             borderRadius: "10px",
@@ -187,7 +204,9 @@ const Pricing = () => {
             justifyContent: "space-between",
             px: "8px",
             mx: "auto",
-            mb: 4,
+            mb: { xs: 2, md: 4 },
+            mt: { xs: 2, md: 0 },
+            gap: 1,
           }}
         >
           <TabButton label="Bids" value="bids" />
@@ -196,16 +215,17 @@ const Pricing = () => {
       </BackgroundGrid>
 
       {/* Pricing Cards */}
-       <Box
+      <Box
         sx={{
           display: "flex",
           flexWrap: "wrap",
-          gap: "16px",
+          gap: { xs: "12px", sm: "16px" },
           maxWidth: "1192px",
           width: "100%",
-          mx:"auto",
-          mt:"-40px",
+          mx: "auto",
+          mt: { xs: "-20px", md: "-40px" },
           justifyContent: "center",
+          px: { xs: 1, sm: 2, md: 0 },
         }}
       >
         {pricingPlans[activeTab].map((plan, index) => (
@@ -216,26 +236,23 @@ const Pricing = () => {
       {/* Comparison Table */}
       <Box
         sx={{
-          
           mx: "auto",
-          mt: 10,
-          mb: 6,
-          px: 2,
-           display: "flex",
-          flexWrap: "wrap",
-          gap: "16px",
+          mt: { xs: 6, md: 10 },
+          mb: { xs: 4, md: 6 },
+          px: { xs: 1, sm: 2 },
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: { xs: "12px", md: "16px" },
           maxWidth: "1192px",
           width: "100%",
-         
-          
-          justifyContent: "center",
         }}
       >
         <Typography
           variant="h4"
           sx={{
             fontWeight: 600,
-            fontSize: { xs: "24px", md: "32px" },
+            fontSize: { xs: "20px", sm: "24px", md: "32px" },
             lineHeight: "1.4",
             textAlign: "center",
             mb: 3,
@@ -250,19 +267,33 @@ const Pricing = () => {
             sx={{
               width: "100%",
               borderCollapse: "collapse",
-              minWidth: "600px", // Optional: helps make the table scroll on small screens
+              minWidth: "600px",
+              fontSize: { xs: "12px", sm: "14px" },
             }}
           >
             <thead>
               <tr>
-                <th style={{ textAlign: "left", padding: "12px", border: "1px solid #ccc" }}>Features</th>
-                {(activeTab === "bids" ? pricingPlans.bids : pricingPlans.promotion).map((plan, idx) => (
+                <th
+                  style={{
+                    textAlign: "left",
+                    padding: "12px",
+                    border: "1px solid #ccc",
+                    background: "#f7f7f7",
+                  }}
+                >
+                  Features
+                </th>
+                {(activeTab === "bids"
+                  ? pricingPlans.bids
+                  : pricingPlans.promotion
+                ).map((plan, idx) => (
                   <th
                     key={idx}
                     style={{
                       textAlign: "center",
                       padding: "12px",
                       border: "1px solid #ccc",
+                      background: "#f7f7f7",
                     }}
                   >
                     {plan.title}
@@ -293,8 +324,19 @@ const Pricing = () => {
                   ]
               ).map((featureTitle, rowIdx) => (
                 <tr key={rowIdx}>
-                  <td style={{ padding: "10px", border: "1px solid #ccc" }}>{featureTitle}</td>
-                  {(activeTab === "bids" ? pricingPlans.bids : pricingPlans.promotion).map((plan, planIdx) => {
+                  <td
+                    style={{
+                      padding: "10px",
+                      border: "1px solid #ccc",
+                      background: "#fff",
+                    }}
+                  >
+                    {featureTitle}
+                  </td>
+                  {(activeTab === "bids"
+                    ? pricingPlans.bids
+                    : pricingPlans.promotion
+                  ).map((plan, planIdx) => {
                     const match = plan.features.find((f) =>
                       f.toLowerCase().includes(featureTitle.toLowerCase())
                     );
@@ -305,6 +347,8 @@ const Pricing = () => {
                           textAlign: "center",
                           padding: "10px",
                           border: "1px solid #ccc",
+                          background: "#fff",
+                          minWidth: 80,
                         }}
                       >
                         {match || "—"}
@@ -316,7 +360,7 @@ const Pricing = () => {
             </tbody>
           </Box>
         </Box>
-        </Box>
+      </Box>
       <FAQSection />
       <BuildSection />
     </>

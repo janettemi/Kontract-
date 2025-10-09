@@ -27,16 +27,18 @@ const PricingCard = ({
 
   return (
     <Box
-  sx={{
-    position: "relative",
-    maxWidth: "286px",
-    flex: "1 1 286px",
-    height: "536px",
-    mt: { xs: 5, md: -6 }, // ← Add this line
-  }}
-  onMouseEnter={() => setIsHovered(true)}
-  onMouseLeave={() => setIsHovered(false)}
->
+      sx={{
+        position: "relative",
+        maxWidth: { xs: "100%", sm: 340, md: 286 },
+        flex: { xs: "1 1 100%", sm: "1 1 340px", md: "1 1 286px" },
+        height: { xs: "auto", md: "536px" },
+        mt: { xs: 5, md: -6 },
+        mx: { xs: "auto", md: 0 },
+        minWidth: 0,
+      }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       {/* Recommended Label */}
       <AnimatePresence>
         {isHovered && (
@@ -48,7 +50,7 @@ const PricingCard = ({
               position: "absolute",
               top: "-28px",
               left: "0",
-              width: "286px",
+              width: "100%",
               height: "28px",
               backgroundColor: "#0718B9",
               color: "#fff",
@@ -61,6 +63,7 @@ const PricingCard = ({
               fontWeight: 500,
               gap: "6px",
               zIndex: 2,
+              fontSize: "14px",
             }}
           >
             <ThumbUpIcon fontSize="small" />
@@ -84,20 +87,30 @@ const PricingCard = ({
           transition: "all 0.3s ease",
         }}
       >
-        <Typography variant="h6" fontWeight={600} mb={1}>
+        <Typography
+          variant="h6"
+          fontWeight={600}
+          mb={1}
+          sx={{ fontSize: { xs: "18px", sm: "20px" } }}
+        >
           {title}
         </Typography>
-        <Typography variant="body2" color="text.secondary" mb={2}>
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          mb={2}
+          sx={{ fontSize: { xs: "13px", sm: "15px" } }}
+        >
           {description}
         </Typography>
 
         <Box display="flex" alignItems="baseline" mb={1}>
-          <Typography fontSize="32px" fontWeight={700}>
+          <Typography fontSize={{ xs: "26px", sm: "32px" }} fontWeight={700}>
             {amount}
           </Typography>
           <Typography
             component="span"
-            fontSize="14px"
+            fontSize={{ xs: "12px", sm: "14px" }}
             color="text.secondary"
             ml={0.5}
           >
@@ -110,16 +123,17 @@ const PricingCard = ({
           variant="outlined"
           textColor="#0718B9"
           borderColor="#0718B9"
-          fullWidth={false}
+          fullWidth
           sx={{
-            width: "246px",
-            height: "36px",
+            width: "100%",
+            height: { xs: "36px", sm: "36px" },
             borderRadius: "10px",
             textTransform: "none",
             mt: 2,
             mb: 4,
             border: "1px solid #0718B9",
             color: "#0718B9",
+            fontSize: { xs: "12px", sm: "12px" },
             "&:hover": {
               backgroundColor: "#0718B9",
               color: "#fff",
@@ -129,7 +143,7 @@ const PricingCard = ({
           {buttonText}
         </CustomButton>
 
-        <Typography fontSize="14px" fontWeight={600} mb={2}>
+        <Typography fontSize={{ xs: "13px", sm: "14px" }} fontWeight={600} mb={2}>
           {listTitle}
         </Typography>
 
@@ -139,7 +153,7 @@ const PricingCard = ({
               <ListItemIcon sx={{ minWidth: "35px" }}>
                 <CheckIcon fontSize="small" sx={{ color: "green" }} />
               </ListItemIcon>
-              <Typography fontSize="14px" color="#001C44">
+              <Typography fontSize={{ xs: "13px", sm: "14px" }} color="#001C44">
                 {feature}
               </Typography>
             </ListItem>
